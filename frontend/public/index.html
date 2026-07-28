@@ -1,0 +1,828 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>建筑规范知识图谱</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; background: #f0f2f5; min-height: 100vh; }
+        .header { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 20px 40px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        .header h1 { font-size: 24px; font-weight: 600; }
+        .container { max-width: 1200px; margin: 30px auto; padding: 0 20px; }
+        .card { background: white; border-radius: 12px; padding: 24px; box-shadow: 0 2px 8px rgba(0,0,0,0.06); margin-bottom: 20px; }
+        .card-title { font-size: 18px; font-weight: 600; color: #1f1f1f; margin-bottom: 16px; display: flex; align-items: center; gap: 10px; }
+        .card-title svg { width: 20px; height: 20px; }
+        .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; }
+        .stat-card { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 10px; padding: 20px; color: white; text-align: center; }
+        .stat-value { font-size: 32px; font-weight: 700; }
+        .stat-label { font-size: 14px; opacity: 0.9; margin-top: 4px; }
+        .btn { background: #667eea; color: white; border: none; padding: 10px 24px; border-radius: 8px; font-size: 14px; cursor: pointer; transition: all 0.3s; }
+        .btn:hover { background: #5a6fd6; transform: translateY(-1px); }
+        .btn-success { background: #10b981; }
+        .btn-success:hover { background: #059669; }
+        .btn-danger { background: #ef4444; }
+        .btn-danger:hover { background: #dc2626; }
+        .btn-group { display: flex; gap: 10px; flex-wrap: wrap; }
+        table { width: 100%; border-collapse: collapse; margin-top: 16px; }
+        th, td { padding: 12px; text-align: left; border-bottom: 1px solid #f0f0f0; }
+        th { background: #fafafa; font-weight: 600; color: #666; }
+        tr:hover { background: #f9fafb; }
+        .tag { display: inline-block; padding: 4px 12px; border-radius: 20px; font-size: 12px; font-weight: 500; }
+        .tag-blue { background: #dbeafe; color: #1d4ed8; }
+        .tag-green { background: #dcfce7; color: #166534; }
+        .tag-orange { background: #ffedd5; color: #b45309; }
+        .form-group { margin-bottom: 16px; }
+        .form-group label { display: block; margin-bottom: 6px; font-weight: 500; }
+        .form-group input, .form-group textarea, .form-group select { width: 100%; padding: 10px 12px; border: 1px solid #e5e7eb; border-radius: 8px; font-size: 14px; }
+        .form-group textarea { min-height: 100px; resize: vertical; }
+        .modal { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.5); align-items: center; justify-content: center; z-index: 1000; }
+        .modal.show { display: flex; }
+        .modal-content { background: white; border-radius: 12px; padding: 24px; width: 90%; max-width: 500px; max-height: 90vh; overflow-y: auto; }
+        .modal-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+        .modal-header h2 { font-size: 18px; }
+        .modal-close { cursor: pointer; font-size: 24px; color: #999; }
+        .search-box { display: flex; gap: 10px; margin-bottom: 16px; }
+        .search-box input { flex: 1; padding: 10px 12px; border: 1px solid #e5e7eb; border-radius: 8px; }
+        .empty-state { text-align: center; padding: 40px; color: #999; }
+        .empty-state svg { width: 64px; height: 64px; margin-bottom: 16px; opacity: 0.5; }
+        .nav-tabs { display: flex; gap: 8px; margin-bottom: 20px; border-bottom: 1px solid #e5e7eb; }
+        .nav-tab { padding: 10px 20px; border-radius: 8px 8px 0 0; background: transparent; border: none; cursor: pointer; font-size: 14px; font-weight: 500; color: #666; }
+        .nav-tab.active { background: #667eea; color: white; }
+        .kg-container { width: 100%; height: 500px; border: 1px solid #e5e7eb; border-radius: 8px; background: #fafafa; }
+        .legend { display: flex; gap: 20px; flex-wrap: wrap; margin-top: 16px; }
+        .legend-item { display: flex; align-items: center; gap: 8px; }
+        .legend-color { width: 16px; height: 16px; border-radius: 50%; }
+        .upload-area { border: 2px dashed #d1d5db; border-radius: 12px; padding: 40px; text-align: center; cursor: pointer; transition: all 0.3s; }
+        .upload-area:hover { border-color: #667eea; background: #f8fafc; }
+        .upload-area.dragover { border-color: #667eea; background: #f0f4ff; }
+        .upload-area input { display: none; }
+        .upload-icon { font-size: 48px; color: #9ca3af; margin-bottom: 12px; }
+        .toast { position: fixed; bottom: 20px; right: 20px; padding: 12px 20px; border-radius: 8px; color: white; font-size: 14px; z-index: 2000; animation: slideIn 0.3s ease; }
+        .toast.success { background: #10b981; }
+        .toast.error { background: #ef4444; }
+        @keyframes slideIn { from { transform: translateX(100%); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>🏗️ 建筑规范知识图谱</h1>
+    </div>
+
+    <div class="container">
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-value" id="stat-specs">0</div>
+                <div class="stat-label">规范数量</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value" id="stat-articles">0</div>
+                <div class="stat-label">条文数量</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value" id="stat-entities">0</div>
+                <div class="stat-label">实体数量</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value" id="stat-relations">0</div>
+                <div class="stat-label">关系数量</div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-title">
+                <span>📋</span> 规范列表
+                <div class="btn-group" style="margin-left: auto;">
+                    <button class="btn" onclick="showUploadModal()">导入规范文件</button>
+                    <button class="btn btn-success" onclick="showExtractModal()">🔮 智能抽取</button>
+                </div>
+            </div>
+            <div class="search-box">
+                <input type="text" placeholder="搜索规范..." id="spec-search">
+                <button class="btn" onclick="loadSpecifications()">刷新</button>
+            </div>
+            <table id="spec-table">
+                <thead>
+                    <tr><th>规范编号</th><th>规范名称</th><th>条文数量</th><th>创建时间</th><th>操作</th></tr>
+                </thead>
+                <tbody id="spec-body"></tbody>
+            </table>
+        </div>
+
+        <div class="card">
+            <div class="card-title">
+                <span>🕸️</span> 知识图谱可视化
+                <button class="btn btn-success" onclick="loadKnowledgeGraph()">刷新图谱</button>
+            </div>
+            <div class="kg-container" id="kg-container">
+                <div class="empty-state">
+                    <span>🗺️</span>
+                    <p>暂无图谱数据</p>
+                    <p style="font-size: 14px; margin-top: 8px;">请先添加实体和关系</p>
+                </div>
+            </div>
+            <div class="legend">
+                <div class="legend-item"><div class="legend-color" style="background: #4ECDC4;"></div><span>实体</span></div>
+                <div class="legend-item"><div class="legend-color" style="background: #FFE66D;"></div><span>属性</span></div>
+                <div class="legend-item"><div class="legend-color" style="background: #95E1D3;"></div><span>概念</span></div>
+                <div class="legend-item"><div class="legend-color" style="background: #F38181;"></div><span>约束</span></div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-title">
+                <span>📦</span> 实体管理
+                <button class="btn" onclick="showEntityModal()">添加实体</button>
+            </div>
+            <table>
+                <thead>
+                    <tr><th>实体名称</th><th>类型</th><th>描述</th><th>创建时间</th><th>操作</th></tr>
+                </thead>
+                <tbody id="entity-body"></tbody>
+            </table>
+        </div>
+
+        <div class="card">
+            <div class="card-title">
+                <span>🔗</span> 关系管理
+                <button class="btn" onclick="showRelationModal()">添加关系</button>
+            </div>
+            <table>
+                <thead>
+                    <tr><th>源节点</th><th>关系类型</th><th>目标节点</th><th>创建时间</th><th>操作</th></tr>
+                </thead>
+                <tbody id="relation-body"></tbody>
+            </table>
+        </div>
+
+        <div class="card">
+            <div class="card-title">
+                <span>📜</span> 规则管理
+                <button class="btn" onclick="showRuleModal()">添加规则</button>
+            </div>
+            <table>
+                <thead>
+                    <tr><th>规则名称</th><th>类型</th><th>内容</th><th>创建时间</th><th>操作</th></tr>
+                </thead>
+                <tbody id="rule-body"></tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="modal" id="upload-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>📤 导入规范文件</h2>
+                <span class="modal-close" onclick="closeModal('upload-modal')">&times;</span>
+            </div>
+            <div class="upload-area" id="upload-area" onclick="document.getElementById('file-input').click()">
+                <div class="upload-icon">📁</div>
+                <p>点击或拖拽文件到此处上传</p>
+                <p style="font-size: 14px; color: #999; margin-top: 8px;">支持 CSV、Excel 格式</p>
+                <input type="file" id="file-input" accept=".csv,.xlsx,.xls" onchange="handleFileUpload()">
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="entity-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="entity-modal-title">添加实体</h2>
+                <span class="modal-close" onclick="closeModal('entity-modal')">&times;</span>
+            </div>
+            <form id="entity-form">
+                <input type="hidden" id="entity-id">
+                <div class="form-group">
+                    <label>实体名称 *</label>
+                    <input type="text" id="entity-name" required>
+                </div>
+                <div class="form-group">
+                    <label>实体类型</label>
+                    <select id="entity-type">
+                        <option value="实体">实体</option>
+                        <option value="属性">属性</option>
+                        <option value="概念">概念</option>
+                        <option value="约束">约束</option>
+                        <option value="其他">其他</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>描述</label>
+                    <textarea id="entity-desc"></textarea>
+                </div>
+                <div class="btn-group">
+                    <button type="submit" class="btn btn-success">保存</button>
+                    <button type="button" class="btn" onclick="closeModal('entity-modal')">取消</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="modal" id="relation-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="relation-modal-title">添加关系</h2>
+                <span class="modal-close" onclick="closeModal('relation-modal')">&times;</span>
+            </div>
+            <form id="relation-form">
+                <input type="hidden" id="relation-id">
+                <div class="form-group">
+                    <label>源节点 *</label>
+                    <select id="relation-source" required></select>
+                </div>
+                <div class="form-group">
+                    <label>目标节点 *</label>
+                    <select id="relation-target" required></select>
+                </div>
+                <div class="form-group">
+                    <label>关系类型 *</label>
+                    <input type="text" id="relation-type" placeholder="例如：属于、包含" required>
+                </div>
+                <div class="form-group">
+                    <label>描述</label>
+                    <textarea id="relation-desc"></textarea>
+                </div>
+                <div class="btn-group">
+                    <button type="submit" class="btn btn-success">保存</button>
+                    <button type="button" class="btn" onclick="closeModal('relation-modal')">取消</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="modal" id="rule-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="rule-modal-title">添加规则</h2>
+                <span class="modal-close" onclick="closeModal('rule-modal')">&times;</span>
+            </div>
+            <form id="rule-form">
+                <input type="hidden" id="rule-id">
+                <div class="form-group">
+                    <label>规则名称 *</label>
+                    <input type="text" id="rule-name" required>
+                </div>
+                <div class="form-group">
+                    <label>规则类型</label>
+                    <select id="rule-type">
+                        <option value="约束规则">约束规则</option>
+                        <option value="推理规则">推理规则</option>
+                        <option value="计算规则">计算规则</option>
+                        <option value="验证规则">验证规则</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>规则内容 *</label>
+                    <textarea id="rule-content" placeholder="例如：IF 建筑高度 > 27m THEN 属于 高层建筑" required></textarea>
+                </div>
+                <div class="btn-group">
+                    <button type="submit" class="btn btn-success">保存</button>
+                    <button type="button" class="btn" onclick="closeModal('rule-modal')">取消</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="modal" id="extract-modal">
+        <div class="modal-content" style="max-width: 700px;">
+            <div class="modal-header">
+                <h2>🔮 智能抽取实体和关系</h2>
+                <span class="modal-close" onclick="closeModal('extract-modal')">&times;</span>
+            </div>
+            <div>
+                <div class="form-group">
+                    <label>选择规范 *</label>
+                    <select id="extract-spec-select" required></select>
+                </div>
+                <div class="form-group">
+                    <label>抽取模式</label>
+                    <div style="display: flex; gap: 15px;">
+                        <label><input type="radio" name="extract-mode" value="auto" checked> 自动抽取并保存</label>
+                        <label><input type="radio" name="extract-mode" value="preview"> 先预览再确认</label>
+                    </div>
+                </div>
+                <div style="padding: 15px; background: #f8fafc; border-radius: 8px; margin-bottom: 16px;">
+                    <p style="color: #666; font-size: 14px;">
+                        <strong>📝 抽取说明：</strong><br>
+                        系统将自动分析选中规范中的所有条文，识别并抽取其中的实体（如建筑高度、抗震设防等）和关系（如大于、属于、应满足等）。<br>
+                        抽取结果会自动去重，重复的实体和关系不会重复保存。
+                    </p>
+                </div>
+                <div id="extract-preview" style="display: none; margin-bottom: 16px;">
+                    <h3 style="margin-bottom: 10px;">📊 抽取预览</h3>
+                    <div id="preview-entities" style="margin-bottom: 15px;">
+                        <h4>实体（待保存）</h4>
+                        <div id="preview-entities-list"></div>
+                    </div>
+                    <div id="preview-relations">
+                        <h4>关系（待保存）</h4>
+                        <div id="preview-relations-list"></div>
+                    </div>
+                </div>
+                <div class="btn-group">
+                    <button type="button" class="btn btn-success" onclick="startExtraction()">
+                        🚀 开始抽取
+                    </button>
+                    <button type="button" class="btn" onclick="closeModal('extract-modal')">取消</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="extract-result-modal">
+        <div class="modal-content" style="max-width: 600px;">
+            <div class="modal-header">
+                <h2>✅ 抽取完成</h2>
+                <span class="modal-close" onclick="closeModal('extract-result-modal')">&times;</span>
+            </div>
+            <div id="extract-result-content">
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 20px;">
+                    <div style="background: #dcfce7; padding: 15px; border-radius: 8px;">
+                        <div style="font-size: 24px; font-weight: bold; color: #166534;">0</div>
+                        <div style="color: #166534;">抽取实体</div>
+                    </div>
+                    <div style="background: #dbeafe; padding: 15px; border-radius: 8px;">
+                        <div style="font-size: 24px; font-weight: bold; color: #1d4ed8;">0</div>
+                        <div style="color: #1d4ed8;">保存实体</div>
+                    </div>
+                    <div style="background: #ffedd5; padding: 15px; border-radius: 8px;">
+                        <div style="font-size: 24px; font-weight: bold; color: #b45309;">0</div>
+                        <div style="color: #b45309;">抽取关系</div>
+                    </div>
+                    <div style="background: #fce7f3; padding: 15px; border-radius: 8px;">
+                        <div style="font-size: 24px; font-weight: bold; color: #be185d;">0</div>
+                        <div style="color: #be185d;">保存关系</div>
+                    </div>
+                </div>
+                <div style="margin-bottom: 20px;">
+                    <h4>📋 规范信息</h4>
+                    <p id="result-spec-info"></p>
+                </div>
+                <div class="btn-group">
+                    <button type="button" class="btn btn-success" onclick="viewExtractedData()">
+                        查看数据
+                    </button>
+                    <button type="button" class="btn" onclick="closeModal('extract-result-modal')">关闭</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const API_URL = 'http://localhost:5000/api';
+
+        async function fetchData(endpoint) {
+            try {
+                const response = await fetch(`${API_URL}${endpoint}`);
+                return await response.json();
+            } catch (error) {
+                showToast('网络请求失败', 'error');
+                return [];
+            }
+        }
+
+        async function postData(endpoint, data) {
+            try {
+                const response = await fetch(`${API_URL}${endpoint}`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(data)
+                });
+                return await response.json();
+            } catch (error) {
+                showToast('请求失败', 'error');
+                return null;
+            }
+        }
+
+        async function putData(endpoint, data) {
+            try {
+                const response = await fetch(`${API_URL}${endpoint}`, {
+                    method: 'PUT',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(data)
+                });
+                return await response.json();
+            } catch (error) {
+                showToast('请求失败', 'error');
+                return null;
+            }
+        }
+
+        async function deleteData(endpoint) {
+            try {
+                const response = await fetch(`${API_URL}${endpoint}`, { method: 'DELETE' });
+                return response.ok;
+            } catch (error) {
+                showToast('请求失败', 'error');
+                return false;
+            }
+        }
+
+        function showToast(message, type = 'success') {
+            const toast = document.createElement('div');
+            toast.className = `toast ${type}`;
+            toast.textContent = message;
+            document.body.appendChild(toast);
+            setTimeout(() => toast.remove(), 3000);
+        }
+
+        function showModal(modalId) {
+            document.getElementById(modalId).classList.add('show');
+        }
+
+        function closeModal(modalId) {
+            document.getElementById(modalId).classList.remove('show');
+        }
+
+        async function loadStats() {
+            const stats = await fetchData('/stats');
+            document.getElementById('stat-specs').textContent = stats.specifications || 0;
+            document.getElementById('stat-articles').textContent = stats.articles || 0;
+            document.getElementById('stat-entities').textContent = stats.entities || 0;
+            document.getElementById('stat-relations').textContent = stats.relations || 0;
+        }
+
+        async function loadSpecifications() {
+            const specs = await fetchData('/specifications');
+            const tbody = document.getElementById('spec-body');
+            tbody.innerHTML = '';
+            
+            if (specs.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="5" class="empty-state">暂无规范数据</td></tr>';
+                return;
+            }
+
+            for (const spec of specs) {
+                const articles = await fetchData(`/specifications/${spec.id}/articles`);
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td><span class="tag tag-blue">${spec.code}</span></td>
+                    <td>${spec.name}</td>
+                    <td><span class="tag tag-green">${articles.length}</span></td>
+                    <td>${new Date(spec.created_at).toLocaleDateString()}</td>
+                    <td>
+                        <button class="btn" style="padding: 6px 12px; font-size: 12px;" onclick="viewArticles(${spec.id})">查看条文</button>
+                    </td>
+                `;
+                tbody.appendChild(row);
+            }
+        }
+
+        async function loadEntities() {
+            const entities = await fetchData('/entities');
+            const tbody = document.getElementById('entity-body');
+            tbody.innerHTML = '';
+
+            if (entities.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="5" class="empty-state">暂无实体数据</td></tr>';
+                return;
+            }
+
+            for (const entity of entities) {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td><span class="tag tag-blue">${entity.name}</span></td>
+                    <td><span class="tag tag-green">${entity.entity_type}</span></td>
+                    <td>${entity.description || '-'}</td>
+                    <td>${new Date(entity.created_at).toLocaleDateString()}</td>
+                    <td>
+                        <button class="btn" style="padding: 6px 12px; font-size: 12px;" onclick="editEntity(${entity.id})">编辑</button>
+                        <button class="btn btn-danger" style="padding: 6px 12px; font-size: 12px;" onclick="deleteEntity(${entity.id})">删除</button>
+                    </td>
+                `;
+                tbody.appendChild(row);
+            }
+        }
+
+        async function loadRelations() {
+            const relations = await fetchData('/relations');
+            const tbody = document.getElementById('relation-body');
+            tbody.innerHTML = '';
+
+            if (relations.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="5" class="empty-state">暂无关系数据</td></tr>';
+                return;
+            }
+
+            for (const relation of relations) {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td><span class="tag tag-blue">${relation.source_name}</span></td>
+                    <td><span class="tag tag-orange">${relation.relation_type}</span></td>
+                    <td><span class="tag tag-green">${relation.target_name}</span></td>
+                    <td>${new Date(relation.created_at).toLocaleDateString()}</td>
+                    <td>
+                        <button class="btn btn-danger" style="padding: 6px 12px; font-size: 12px;" onclick="deleteRelation(${relation.id})">删除</button>
+                    </td>
+                `;
+                tbody.appendChild(row);
+            }
+        }
+
+        async function loadRules() {
+            const rules = await fetchData('/rules');
+            const tbody = document.getElementById('rule-body');
+            tbody.innerHTML = '';
+
+            if (rules.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="5" class="empty-state">暂无规则数据</td></tr>';
+                return;
+            }
+
+            for (const rule of rules) {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td><span class="tag tag-blue">${rule.name}</span></td>
+                    <td><span class="tag tag-green">${rule.rule_type}</span></td>
+                    <td>${rule.content.length > 50 ? rule.content.substring(0, 50) + '...' : rule.content}</td>
+                    <td>${new Date(rule.created_at).toLocaleDateString()}</td>
+                    <td>
+                        <button class="btn btn-danger" style="padding: 6px 12px; font-size: 12px;" onclick="deleteRule(${rule.id})">删除</button>
+                    </td>
+                `;
+                tbody.appendChild(row);
+            }
+        }
+
+        function showUploadModal() {
+            showModal('upload-modal');
+        }
+
+        function handleFileUpload() {
+            const fileInput = document.getElementById('file-input');
+            const file = fileInput.files[0];
+            if (!file) return;
+
+            const formData = new FormData();
+            formData.append('file', file);
+
+            fetch(`${API_URL}/upload`, {
+                method: 'POST',
+                body: formData
+            }).then(response => response.json())
+              .then(data => {
+                  showToast(data.message, data.error ? 'error' : 'success');
+                  closeModal('upload-modal');
+                  loadStats();
+                  loadSpecifications();
+              }).catch(() => showToast('上传失败', 'error'));
+        }
+
+        function showEntityModal(entity = null) {
+            document.getElementById('entity-form').reset();
+            document.getElementById('entity-id').value = '';
+            
+            if (entity) {
+                document.getElementById('entity-modal-title').textContent = '编辑实体';
+                document.getElementById('entity-id').value = entity.id;
+                document.getElementById('entity-name').value = entity.name;
+                document.getElementById('entity-type').value = entity.entity_type;
+                document.getElementById('entity-desc').value = entity.description || '';
+            } else {
+                document.getElementById('entity-modal-title').textContent = '添加实体';
+            }
+            showModal('entity-modal');
+        }
+
+        async function editEntity(id) {
+            const entity = await fetchData(`/entities/${id}`);
+            showEntityModal(entity);
+        }
+
+        async function deleteEntity(id) {
+            if (confirm('确定删除此实体？')) {
+                if (await deleteData(`/entities/${id}`)) {
+                    showToast('删除成功');
+                    loadEntities();
+                    loadStats();
+                }
+            }
+        }
+
+        document.getElementById('entity-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const id = document.getElementById('entity-id').value;
+            const data = {
+                name: document.getElementById('entity-name').value,
+                entity_type: document.getElementById('entity-type').value,
+                description: document.getElementById('entity-desc').value
+            };
+
+            if (id) {
+                await putData(`/entities/${id}`, data);
+                showToast('修改成功');
+            } else {
+                await postData('/entities', data);
+                showToast('添加成功');
+            }
+            closeModal('entity-modal');
+            loadEntities();
+            loadStats();
+        });
+
+        async function showRelationModal() {
+            document.getElementById('relation-form').reset();
+            document.getElementById('relation-id').value = '';
+            
+            const entities = await fetchData('/entities');
+            const sourceSelect = document.getElementById('relation-source');
+            const targetSelect = document.getElementById('relation-target');
+            sourceSelect.innerHTML = entities.map(e => `<option value="${e.id}">${e.name}</option>`).join('');
+            targetSelect.innerHTML = entities.map(e => `<option value="${e.id}">${e.name}</option>`).join('');
+            
+            showModal('relation-modal');
+        }
+
+        async function deleteRelation(id) {
+            if (confirm('确定删除此关系？')) {
+                if (await deleteData(`/relations/${id}`)) {
+                    showToast('删除成功');
+                    loadRelations();
+                    loadStats();
+                }
+            }
+        }
+
+        document.getElementById('relation-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const data = {
+                source_id: parseInt(document.getElementById('relation-source').value),
+                target_id: parseInt(document.getElementById('relation-target').value),
+                relation_type: document.getElementById('relation-type').value,
+                description: document.getElementById('relation-desc').value
+            };
+
+            await postData('/relations', data);
+            showToast('添加成功');
+            closeModal('relation-modal');
+            loadRelations();
+            loadStats();
+        });
+
+        function showRuleModal() {
+            document.getElementById('rule-form').reset();
+            document.getElementById('rule-id').value = '';
+            showModal('rule-modal');
+        }
+
+        async function deleteRule(id) {
+            if (confirm('确定删除此规则？')) {
+                if (await deleteData(`/rules/${id}`)) {
+                    showToast('删除成功');
+                    loadRules();
+                }
+            }
+        }
+
+        document.getElementById('rule-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const data = {
+                name: document.getElementById('rule-name').value,
+                rule_type: document.getElementById('rule-type').value,
+                content: document.getElementById('rule-content').value
+            };
+
+            await postData('/rules', data);
+            showToast('添加成功');
+            closeModal('rule-modal');
+            loadRules();
+        });
+
+        async function loadKnowledgeGraph() {
+            const kg = await fetchData('/knowledge_graph');
+            const container = document.getElementById('kg-container');
+            
+            if (!kg.nodes || kg.nodes.length === 0) {
+                container.innerHTML = `
+                    <div class="empty-state">
+                        <span>🗺️</span>
+                        <p>暂无图谱数据</p>
+                        <p style="font-size: 14px; margin-top: 8px;">请先添加实体和关系</p>
+                    </div>
+                `;
+                return;
+            }
+
+            container.innerHTML = `
+                <svg width="100%" height="100%" style="background: #fafafa;">
+                    <defs>
+                        <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+                            <polygon points="0 0, 10 3.5, 0 7" fill="#666"/>
+                        </marker>
+                    </defs>
+                    ${kg.nodes.map((node, i) => {
+                        const x = 100 + (i % 4) * 250;
+                        const y = 100 + Math.floor(i / 4) * 150;
+                        const colors = { '实体': '#4ECDC4', '属性': '#FFE66D', '概念': '#95E1D3', '约束': '#F38181', '其他': '#AA96DA' };
+                        return `<circle cx="${x}" cy="${y}" r="30" fill="${colors[node.entity_type] || '#95a5a6'}" stroke="#333" stroke-width="2"/>
+                                <text x="${x}" y="${y + 5}" text-anchor="middle" font-size="12" fill="#333">${node.name}</text>`;
+                    }).join('')}
+                    ${kg.edges.map(edge => {
+                        const sourceNode = kg.nodes.find(n => n.id === edge.source_id);
+                        const targetNode = kg.nodes.find(n => n.id === edge.target_id);
+                        if (!sourceNode || !targetNode) return '';
+                        const sourceIdx = kg.nodes.indexOf(sourceNode);
+                        const targetIdx = kg.nodes.indexOf(targetNode);
+                        const x1 = 100 + (sourceIdx % 4) * 250;
+                        const y1 = 100 + Math.floor(sourceIdx / 4) * 150;
+                        const x2 = 100 + (targetIdx % 4) * 250;
+                        const y2 = 100 + Math.floor(targetIdx / 4) * 150;
+                        const midX = (x1 + x2) / 2;
+                        const midY = (y1 + y2) / 2;
+                        return `<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" stroke="#666" stroke-width="2" marker-end="url(#arrowhead)"/>
+                                <text x="${midX}" y="${midY - 10}" text-anchor="middle" font-size="11" fill="#666">${edge.relation_type}</text>`;
+                    }).join('')}
+                </svg>
+            `;
+        }
+
+        function viewArticles(specId) {
+            alert(`查看规范ID: ${specId} 的条文列表\n\n此功能需要完整的前端应用支持。\n请安装 Node.js 后运行 npm run dev`);
+        }
+
+        async function showExtractModal() {
+            const specs = await fetchData('/specifications');
+            const select = document.getElementById('extract-spec-select');
+            select.innerHTML = '';
+            
+            specs.forEach(spec => {
+                const option = document.createElement('option');
+                option.value = spec.id;
+                option.textContent = `${spec.code} - ${spec.name}`;
+                select.appendChild(option);
+            });
+            
+            document.getElementById('extract-preview').style.display = 'none';
+            showModal('extract-modal');
+        }
+
+        async function startExtraction() {
+            const specId = document.getElementById('extract-spec-select').value;
+            const mode = document.querySelector('input[name="extract-mode"]:checked').value;
+            
+            if (!specId) {
+                showToast('请选择规范', 'error');
+                return;
+            }
+
+            const button = event.target;
+            button.textContent = '⏳ 抽取中...';
+            button.disabled = true;
+
+            try {
+                const response = await fetch(`${API_URL}/extract/specification/${specId}`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' }
+                });
+                const result = await response.json();
+
+                closeModal('extract-modal');
+                showExtractResult(result);
+                
+            } catch (error) {
+                showToast('抽取失败', 'error');
+            } finally {
+                button.textContent = '🚀 开始抽取';
+                button.disabled = false;
+            }
+        }
+
+        function showExtractResult(result) {
+            const modal = document.getElementById('extract-result-modal');
+            
+            document.querySelector('#extract-result-content div:nth-child(1) div:nth-child(1) div:first-child').textContent = 
+                result.total_extracted_entities || 0;
+            document.querySelector('#extract-result-content div:nth-child(1) div:nth-child(2) div:first-child').textContent = 
+                result.total_saved_entities || 0;
+            document.querySelector('#extract-result-content div:nth-child(1) div:nth-child(3) div:first-child').textContent = 
+                result.total_extracted_relations || 0;
+            document.querySelector('#extract-result-content div:nth-child(1) div:nth-child(4) div:first-child').textContent = 
+                result.total_saved_relations || 0;
+            
+            document.getElementById('result-spec-info').textContent = 
+                `规范ID: ${result.spec_id} | 条文数量: ${result.articles_count}`;
+
+            showModal('extract-result-modal');
+        }
+
+        function viewExtractedData() {
+            closeModal('extract-result-modal');
+            loadStats();
+            loadEntities();
+            loadRelations();
+            loadKnowledgeGraph();
+            showToast('数据已更新', 'success');
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            loadStats();
+            loadSpecifications();
+            loadEntities();
+            loadRelations();
+            loadRules();
+            loadKnowledgeGraph();
+        });
+    </script>
+</body>
+</html>

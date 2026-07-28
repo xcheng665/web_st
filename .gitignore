@@ -1,0 +1,48 @@
+# Dependencies
+node_modules/
+frontend/node_modules/
+.venv/
+venv/
+env/
+
+# Build outputs
+frontend/dist/
+backend/dist/
+backend/dist-*/
+backend/build/
+backend/build-*/
+*.spec
+
+# Python cache
+__pycache__/
+*.py[cod]
+.pytest_cache/
+
+# Runtime data and secrets
+.env
+.env.*
+!.env.example
+backend/instance/
+backend/data/
+backend/uploads/
+*.db
+*.sqlite
+*.sqlite3
+
+# Local IDE and OS files
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
+
+# Large local installers / generated desktop packages
+Docker Desktop*.exe
+Docker Desktop*.yaml
+Docker Desktop*.yml
+*.pkg
+*.exe
+
+# Temporary work files
+*.log
+tmp/
+temp/

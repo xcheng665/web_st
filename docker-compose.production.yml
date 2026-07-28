@@ -1,0 +1,27 @@
+services:
+  knowledge-model:
+    environment:
+      # Set POSTGRES_PASSWORD and SECRET_KEY in the production .env file.
+      DATABASE_URL: postgresql+psycopg://building_code:${POSTGRES_PASSWORD:?set POSTGRES_PASSWORD}@postgres:5432/building_code
+      APP_DATA_DIR: /app/data
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+  postgres:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_DB: building_code
+      POSTGRES_USER: building_code
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?set POSTGRES_PASSWORD}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U building_code -d building_code"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+    restart: unless-stopped
+
+volumes:
+  postgres_data:
