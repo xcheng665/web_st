@@ -45,12 +45,18 @@ curl http://127.0.0.1:5000/api/health
 ```
 
 访问 `http://服务器地址:5000`。数据会保存在 Docker 命名卷 `knowledge_data`；生产部署应在反向代理中配置 HTTPS，并将密钥保存至服务器环境变量或密钥管理服务。停止服务使用 `docker compose down`，不带 `-v` 可保留数据卷。
-## Production deployment (PostgreSQL)
+## Production deployment (MySQL)
 
-The default Compose file keeps the demo's SQLite storage. For a multi-user or long-running deployment, create `.env` from `.env.example`, set a strong `SECRET_KEY` and `POSTGRES_PASSWORD`, then run:
+The default Compose file keeps the demo's SQLite storage. For a multi-user or long-running deployment, create `.env` from `.env.example`, set a strong `SECRET_KEY`, `MYSQL_PASSWORD` and `MYSQL_ROOT_PASSWORD`, then run:
 
 ```powershell
 docker compose -f docker-compose.yml -f docker-compose.production.yml up -d --build
 ```
 
-The application selects PostgreSQL automatically when `DATABASE_URL` is set. Configure your reverse proxy or cloud load balancer to terminate HTTPS before the container; do not expose a database port publicly.
+The production override starts a MySQL 8 container, creates the `building_code` database/user, and sets:
+
+```text
+DATABASE_URL=mysql+pymysql://building_code:<MYSQL_PASSWORD>@mysql:3306/building_code?charset=utf8mb4
+```
+
+The application selects MySQL automatically when `DATABASE_URL` is set. Configure your reverse proxy or cloud load balancer to terminate HTTPS before the container; do not expose the MySQL port publicly.

@@ -13,7 +13,8 @@ load_dotenv(RUNTIME_DIR / '.env')
 
 class Config:
     SECRET_KEY = os.environ.get('SECRET_KEY') or 'dev-secret-key'
-    # Local/EXE mode keeps SQLite. Deployments set DATABASE_URL to PostgreSQL.
+    # Local/EXE mode keeps SQLite. Deployments can set DATABASE_URL to MySQL.
+    # Example: mysql+pymysql://building_code:password@mysql:3306/building_code?charset=utf8mb4
     SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL') or f'sqlite:///{RUNTIME_DIR}/instance/specifications.db'
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     UPLOAD_FOLDER = os.path.join(BASE_DIR, 'uploads')

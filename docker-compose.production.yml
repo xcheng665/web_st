@@ -1,27 +1,33 @@
 services:
   knowledge-model:
     environment:
-      # Set POSTGRES_PASSWORD and SECRET_KEY in the production .env file.
-      DATABASE_URL: postgresql+psycopg://building_code:${POSTGRES_PASSWORD:?set POSTGRES_PASSWORD}@postgres:5432/building_code
+      # Set MYSQL_PASSWORD, MYSQL_ROOT_PASSWORD and SECRET_KEY in the production .env file.
+      DATABASE_URL: "mysql+pymysql://building_code:${MYSQL_PASSWORD:?set MYSQL_PASSWORD}@mysql:3306/building_code?charset=utf8mb4"
       APP_DATA_DIR: /app/data
     depends_on:
-      postgres:
+      mysql:
         condition: service_healthy
 
-  postgres:
-    image: postgres:16-alpine
+  mysql:
+    image: mysql:8.0
     environment:
-      POSTGRES_DB: building_code
-      POSTGRES_USER: building_code
-      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?set POSTGRES_PASSWORD}
+      MYSQL_DATABASE: building_code
+      MYSQL_USER: building_code
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD:?set MYSQL_PASSWORD}
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:?set MYSQL_ROOT_PASSWORD}
+      TZ: Asia/Shanghai
+    command:
+      - --character-set-server=utf8mb4
+      - --collation-server=utf8mb4_unicode_ci
+      - --default-time-zone=+08:00
     volumes:
-      - postgres_data:/var/lib/postgresql/data
+      - mysql_data:/var/lib/mysql
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U building_code -d building_code"]
+      test: ["CMD-SHELL", "mysqladmin ping -h 127.0.0.1 -u$${MYSQL_USER} -p$${MYSQL_PASSWORD} --silent"]
       interval: 10s
       timeout: 5s
       retries: 10
     restart: unless-stopped
 
 volumes:
-  postgres_data:
+  mysql_data:
