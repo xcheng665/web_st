@@ -6,8 +6,14 @@ from dotenv import load_dotenv
 
 BASE_DIR = Path(__file__).resolve().parent
 IS_FROZEN = getattr(sys, 'frozen', False)
+IS_VERCEL = bool(os.environ.get('VERCEL'))
 BUNDLE_DIR = Path(getattr(sys, '_MEIPASS', BASE_DIR))
-default_runtime = Path(os.environ.get('LOCALAPPDATA', BASE_DIR)) / 'BuildingCodeKnowledgeModel' if IS_FROZEN else BASE_DIR
+if IS_FROZEN:
+    default_runtime = Path(os.environ.get('LOCALAPPDATA', BASE_DIR)) / 'BuildingCodeKnowledgeModel'
+elif IS_VERCEL:
+    default_runtime = Path('/tmp') / 'BuildingCodeKnowledgeModel'
+else:
+    default_runtime = BASE_DIR
 RUNTIME_DIR = Path(os.environ.get('APP_DATA_DIR', default_runtime))
 load_dotenv(RUNTIME_DIR / '.env')
 
@@ -17,7 +23,7 @@ class Config:
     # Example: mysql+pymysql://building_code:password@mysql:3306/building_code?charset=utf8mb4
     SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL') or f'sqlite:///{RUNTIME_DIR}/instance/specifications.db'
     SQLALCHEMY_TRACK_MODIFICATIONS = False
-    UPLOAD_FOLDER = os.path.join(BASE_DIR, 'uploads')
+    UPLOAD_FOLDER = os.path.join(RUNTIME_DIR, 'uploads')
     ALLOWED_EXTENSIONS = {'csv', 'xlsx', 'xls', 'pdf', 'docx'}
     # Any OpenAI-compatible provider can be used (OpenAI, DeepSeek, DashScope
     # compatible endpoint, private gateway, etc.).  Keep secrets in .env.
