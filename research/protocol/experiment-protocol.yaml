@@ -1,0 +1,50 @@
+study_id: TBGCC-2026-01
+primary_specs:
+  - GB50016
+  - GB50011
+main_gold_manifest:
+  total_clauses: 320
+  GB50016: 253
+  GB50011: 67
+pilot_manifest:
+  GB50096: 40
+  GB55019: 40
+sampling:
+  seed: 20260624
+  GB50016: stratified by leading clause chapter
+  GB50011: census of all imported clauses
+annotation:
+  independent_annotators: 2
+  adjudicator: 1
+  agreement_threshold: 0.70
+methods:
+  - pattern_baseline
+  - vanilla_llm_json
+  - evidence_constrained_llm
+llm_controls:
+  temperature: 0
+  record_fields:
+    - model_id
+    - model_access_date
+    - prompt_version
+    - max_output_tokens
+    - retry_policy
+metrics:
+  extraction:
+    - precision
+    - recall
+    - f1
+    - evidence_locatability
+    - bootstrap_95_ci
+  compliance:
+    - accuracy
+    - macro_f1
+    - article_locatability
+    - improper_certainty_rate
+cases:
+  count: 32
+  statuses:
+    pass: 8
+    fail: 8
+    pending: 8
+    advisory: 8

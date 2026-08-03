@@ -1,0 +1,293 @@
+{
+  "case_count": 32,
+  "status_counts": {
+    "pass": 8,
+    "fail": 8,
+    "pending": 8,
+    "advisory": 8
+  },
+  "accuracy": 1.0,
+  "macro_f1": 1.0,
+  "article_locatability": 0.96875,
+  "improper_certainty_rate": 0.0,
+  "per_label": {
+    "pass": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0
+    },
+    "fail": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0
+    },
+    "pending": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0
+    },
+    "advisory": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0
+    }
+  },
+  "rows": [
+    {
+      "id": "P01",
+      "expected": "pass",
+      "actual": "pass",
+      "correct": true,
+      "evidence_locatable": true,
+      "improper_certainty": false
+    },
+    {
+      "id": "P02",
+      "expected": "pass",
+      "actual": "pass",
+      "correct": true,
+      "evidence_locatable": true,
+      "improper_certainty": false
+    },
+    {
+      "id": "P03",
+      "expected": "pass",
+      "actual": "pass",
+      "correct": true,
+      "evidence_locatable": true,
+      "improper_certainty": false
+    },
+    {
+      "id": "P04",
+      "expected": "pass",
+      "actual": "pass",
+      "correct": true,
+      "evidence_locatable": true,
+      "improper_certainty": false
+    },
+    {
+      "id": "P05",
+      "expected": "pass",
+      "actual": "pass",
+      "correct": true,
+      "evidence_locatable": true,
+      "improper_certainty": false
+    },
+    {
+      "id": "P06",
+      "expected": "pass",
+      "actual": "pass",
+      "correct": true,
+      "evidence_locatable": true,
+      "improper_certainty": false
+    },
+    {
+      "id": "P07",
+      "expected": "pass",
+      "actual": "pass",
+      "correct": true,
+      "evidence_locatable": true,
+      "improper_certainty": false
+    },
+    {
+      "id": "P08",
+      "expected": "pass",
+      "actual": "pass",
+      "correct": true,
+      "evidence_locatable": true,
+      "improper_certainty": false
+    },
+    {
+      "id": "F01",
+      "expected": "fail",
+      "actual": "fail",
+      "correct": true,
+      "evidence_locatable": true,
+      "improper_certainty": false
+    },
+    {
+      "id": "F02",
+      "expected": "fail",
+      "actual": "fail",
+      "correct": true,
+      "evidence_locatable": true,
+      "improper_certainty": false
+    },
+    {
+      "id": "F03",
+      "expected": "fail",
+      "actual": "fail",
+      "correct": true,
+      "evidence_locatable": true,
+      "improper_certainty": false
+    },
+    {
+      "id": "F04",
+      "expected": "fail",
+      "actual": "fail",
+      "correct": true,
+      "evidence_locatable": true,
+      "improper_certainty": false
+    },
+    {
+      "id": "F05",
+      "expected": "fail",
+      "actual": "fail",
+      "correct": true,
+      "evidence_locatable": true,
+      "improper_certainty": false
+    },
+    {
+      "id": "F06",
+      "expected": "fail",
+      "actual": "fail",
+      "correct": true,
+      "evidence_locatable": true,
+      "improper_certainty": false
+    },
+    {
+      "id": "F07",
+      "expected": "fail",
+      "actual": "fail",
+      "correct": true,
+      "evidence_locatable": true,
+      "improper_certainty": false
+    },
+    {
+      "id": "F08",
+      "expected": "fail",
+      "actual": "fail",
+      "correct": true,
+      "evidence_locatable": true,
+      "improper_certainty": false
+    },
+    {
+      "id": "N01",
+      "expected": "pending",
+      "actual": "pending",
+      "correct": true,
+      "evidence_locatable": true,
+      "improper_certainty": false
+    },
+    {
+      "id": "N02",
+      "expected": "pending",
+      "actual": "pending",
+      "correct": true,
+      "evidence_locatable": true,
+      "improper_certainty": false
+    },
+    {
+      "id": "N03",
+      "expected": "pending",
+      "actual": "pending",
+      "correct": true,
+      "evidence_locatable": true,
+      "improper_certainty": false
+    },
+    {
+      "id": "N04",
+      "expected": "pending",
+      "actual": "pending",
+      "correct": true,
+      "evidence_locatable": true,
+      "improper_certainty": false
+    },
+    {
+      "id": "N05",
+      "expected": "pending",
+      "actual": "pending",
+      "correct": true,
+      "evidence_locatable": false,
+      "improper_certainty": false
+    },
+    {
+      "id": "N06",
+      "expected": "pending",
+      "actual": "pending",
+      "correct": true,
+      "evidence_locatable": true,
+      "improper_certainty": false
+    },
+    {
+      "id": "N07",
+      "expected": "pending",
+      "actual": "pending",
+      "correct": true,
+      "evidence_locatable": true,
+      "improper_certainty": false
+    },
+    {
+      "id": "N08",
+      "expected": "pending",
+      "actual": "pending",
+      "correct": true,
+      "evidence_locatable": true,
+      "improper_certainty": false
+    },
+    {
+      "id": "A01",
+      "expected": "advisory",
+      "actual": "advisory",
+      "correct": true,
+      "evidence_locatable": true,
+      "improper_certainty": false
+    },
+    {
+      "id": "A02",
+      "expected": "advisory",
+      "actual": "advisory",
+      "correct": true,
+      "evidence_locatable": true,
+      "improper_certainty": false
+    },
+    {
+      "id": "A03",
+      "expected": "advisory",
+      "actual": "advisory",
+      "correct": true,
+      "evidence_locatable": true,
+      "improper_certainty": false
+    },
+    {
+      "id": "A04",
+      "expected": "advisory",
+      "actual": "advisory",
+      "correct": true,
+      "evidence_locatable": true,
+      "improper_certainty": false
+    },
+    {
+      "id": "A05",
+      "expected": "advisory",
+      "actual": "advisory",
+      "correct": true,
+      "evidence_locatable": true,
+      "improper_certainty": false
+    },
+    {
+      "id": "A06",
+      "expected": "advisory",
+      "actual": "advisory",
+      "correct": true,
+      "evidence_locatable": true,
+      "improper_certainty": false
+    },
+    {
+      "id": "A07",
+      "expected": "advisory",
+      "actual": "advisory",
+      "correct": true,
+      "evidence_locatable": true,
+      "improper_certainty": false
+    },
+    {
+      "id": "A08",
+      "expected": "advisory",
+      "actual": "advisory",
+      "correct": true,
+      "evidence_locatable": true,
+      "improper_certainty": false
+    }
+  ]
+}

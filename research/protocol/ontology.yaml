@@ -1,0 +1,43 @@
+version: 1.0
+title: Traceability-aware building-code ontology
+entity_types:
+  - building_object
+  - building_part
+  - performance_indicator
+  - numeric_value
+  - standard
+  - action
+  - condition
+relation_types:
+  - applies_to
+  - has_attribute
+  - requires
+  - prohibits
+  - at_least
+  - at_most
+  - greater_than
+  - less_than
+  - contains
+  - complies_with
+rule_fields:
+  - rule_name
+  - rule_type
+  - applicability_conditions
+  - subject
+  - operator
+  - threshold_or_requirement
+  - evidence
+  - source_standard
+  - clause_number
+  - review_status
+review_statuses:
+  - pending
+  - accepted
+  - rejected
+  - needs_revision
+evidence_constraint: Every entity, relation, rule condition, and rule requirement must reference a non-empty continuous substring of the source clause.
+decision_statuses:
+  pass: Complete project inputs satisfy an applicable and computable rule.
+  fail: Complete project inputs violate an applicable and computable rule.
+  pending: Required applicability conditions, project inputs, or complete rule semantics are missing.
+  advisory: A reviewed rule is not triggered or calls for professional attention without a binary compliance decision.

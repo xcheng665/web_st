@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<graphml xmlns="http://graphml.graphdrawing.org/xmlns" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd">
+  <key id="d0" for="node" attr.name="type" attr.type="string"/>
+  <key id="d1" for="node" attr.name="name" attr.type="string"/>
+  <key id="d2" for="node" attr.name="attributes" attr.type="string"/>
+  <key id="d3" for="node" attr.name="source" attr.type="string"/>
+  <key id="d4" for="edge" attr.name="type" attr.type="string"/>
+  <key id="d5" for="edge" attr.name="description" attr.type="string"/>
+  <key id="d6" for="edge" attr.name="conditions" attr.type="string"/>
+  <key id="d7" for="edge" attr.name="source" attr.type="string"/>
+  <graph id="G" edgedefault="directed">
+    <node id="production_fire_hazard">
+      <data key="d0">参数</data>
+      <data key="d1">生产的火灾危险性</data>
+      <data key="d2">{"分类等级": {"value": "甲、乙、丙、丁、戊类", "unit": ""}}</data>
+      <data key="d3">3.1.1</data>
+    </node>
+    <node id="factory_building">
+      <data key="d0">建筑类型</data>
+      <data key="d1">厂房</data>
+      <data key="d2">{"attributes": {}}</data>
+      <data key="d3">3.1.2-1</data>
+    </node>
+    <node id="fire_protection_zone">
+      <data key="d0">场所</data>
+      <data key="d1">防火分区</data>
+      <data key="d2">{"attributes": {}}</data>
+      <data key="d3">3.1.2-1</data>
+    </node>
+    <node id="high_hazard_production_area">
+      <data key="d0">场所</data>
+      <data key="d1">火灾危险性较大的生产部分</data>
+      <data key="d2">{"占比阈值1": {"value": "5", "unit": "%"}, "占比阈值2": {"value": "10", "unit": "%"}}</data>
+      <data key="d3">3.1.2-1</data>
+    </node>
+    <node id="low_hazard_production_area">
+      <data key="d0">场所</data>
+      <data key="d1">火灾危险性较小的生产部分</data>
+      <data key="d2">{"attributes": {}}</data>
+      <data key="d3">3.1.2-1</data>
+    </node>
+    <node id="paint_workshop">
+      <data key="d0">场所</data>
+      <data key="d1">油漆工段</data>
+      <data key="d2">{"attributes": {}}</data>
+      <data key="d3">3.1.2-1</data>
+    </node>
+    <node id="class_d_factory">
+      <data key="d0">建筑类型</data>
+      <data key="d1">丁类厂房</data>
+      <data key="d2">{"attributes": {}}</data>
+      <data key="d3">3.1.2-1</data>
+    </node>
+    <node id="class_e_factory">
+      <data key="d0">建筑类型</data>
+      <data key="d1">戊类厂房</data>
+      <data key="d2">{"attributes": {}}</data>
+      <data key="d3">3.1.2-1</data>
+    </node>
+    <node id="fire_hazard_category">
+      <data key="d0">参数</data>
+      <data key="d1">生产火灾危险性类别</data>
+      <data key="d2">{"attributes": {}}</data>
+      <data key="d3">3.1.2-1</data>
+    </node>
+    <edge id="e0" source="production_fire_hazard" target="production_material_quantity">
+      <data key="d4">CONSTRAINS</data>
+      <data key="d5">生产的火灾危险性分类受生产中使用或产生的物质性质及其数量因素约束</data>
+      <data key="d6">[]</data>
+      <data key="d7">3.1.1</data>
+    </edge>
+    <edge id="e1" source="production_fire_hazard" target="production_material_property">
+      <data key="d4">CONSTRAINS</data>
+      <data key="d5">生产的火灾危险性分类受生产中使用或产生的物质性质及其数量因素约束</data>
+      <data key="d6">[]</data>
+      <data key="d7">3.1.1</data>
+    </edge>
+    <edge id="e2" source="factory_building" target="fire_protection_zone">
+      <data key="d4">CONTAINS</data>
+      <data key="d5">厂房包含防火分区</data>
+      <data key="d6">[]</data>
+      <data key="d7">3.1.2-1</data>
+    </edge>
+    <edge id="e3" source="factory_building" target="high_hazard_production_area">
+      <data key="d4">CONTAINS</data>
+      <data key="d5">厂房包含火灾危险性较大的生产部分</data>
+      <data key="d6">["同一座厂房内有不同火灾危险性生产"]</data>
+      <data key="d7">3.1.2-1</data>
+    </edge>
+    <edge id="e4" source="factory_building" target="low_hazard_production_area">
+      <data key="d4">CONTAINS</data>
+      <data key="d5">厂房包含火灾危险性较小的生产部分</data>
+      <data key="d6">["同一座厂房内有不同火灾危险性生产"]</data>
+      <data key="d7">3.1.2-1</data>
+    </edge>
+    <edge id="e5" source="fire_protection_zone" target="high_hazard_production_area">
+      <data key="d4">CONTAINS</data>
+      <data key="d5">防火分区包含火灾危险性较大的生产部分</data>
+      <data key="d6">["厂房的任一防火分区内有不同火灾危险性生产"]</data>
+      <data key="d7">3.1.2-1</data>
+    </edge>
+    <edge id="e6" source="fire_protection_zone" target="low_hazard_production_area">
+      <data key="d4">CONTAINS</data>
+      <data key="d5">防火分区包含火灾危险性较小的生产部分</data>
+      <data key="d6">["厂房的任一防火分区内有不同火灾危险性生产"]</data>
+      <data key="d7">3.1.2-1</data>
+    </edge>
+    <edge id="e7" source="class_d_factory" target="paint_workshop">
+      <data key="d4">CONTAINS</data>
+      <data key="d5">丁类厂房包含油漆工段</data>
+      <data key="d6">[]</data>
+      <data key="d7">3.1.2-1</data>
+    </edge>
+    <edge id="e8" source="class_e_factory" target="paint_workshop">
+      <data key="d4">CONTAINS</data>
+      <data key="d5">戊类厂房包含油漆工段</data>
+      <data key="d6">[]</data>
+      <data key="d7">3.1.2-1</data>
+    </edge>
+  </graph>
+</graphml>

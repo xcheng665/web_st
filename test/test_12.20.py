@@ -1,0 +1,909 @@
+import streamlit as st
+import pandas as pd
+import json
+from pathlib import Path
+from datetime import datetime
+import zipfile
+from io import BytesIO
+import os
+import networkx as nx
+from pyvis.network import Network
+import re
+from typing import Dict, List, Tuple
+import csv
+
+# ==================== 页面配置 ====================
+st.set_page_config(
+    page_title="建筑设计规范 - 知识图谱标注工具",
+    layout="wide",
+    initial_sidebar_state="expanded"
+)
+
+# ==================== 自定义样式 ====================
+def load_custom_css():
+    st.markdown(
+        """
+        <style>
+        /* 引入字体（若用户系统支持） */
+        @font-face {
+            font-family: "KaiTi";
+            src: local("Kaiti"), local("华文宋体"), local("KaiTi");
+        }
+        @font-face {
+            font-family: "SimSun";
+            src: local("SimSun"), local("宋体");
+        }
+
+        #MainMenu, footer {visibility: hidden;}
+
+        body {
+            background: radial-gradient(circle at top, #f8fafc 0%, #eef2f7 60%, #e2e8f0 100%);
+            color: #111827;
+            font-family: "SimSun", "Songti SC", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            animation: fadeIn 0.8s ease;
+        }
+
+        .block-container {
+            max-width: 1200px;
+            padding-top: 2.5rem;
+            padding-bottom: 2rem;
+        }
+
+        h1 {
+            font-family: "KaiTi", "STKaiti", "SimSun", serif;
+            letter-spacing: 0.1rem;
+            color: #0f172a;
+            position: relative;
+            display: inline-block;
+            padding-bottom: 0.35rem;
+        }
+        h1::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 60%;
+            height: 3px;
+            background: linear-gradient(120deg, #0ea5e9, #6366f1);
+            border-radius: 3px;
+            animation: slideIn 1s ease;
+        }
+
+        h2, h3, h4 {
+            font-weight: 700;
+            letter-spacing: 0.03rem;
+            color: #0f172a;
+        }
+
+        .card {
+            background: rgba(255,255,255,0.92);
+            padding: 1.35rem 1.6rem;
+            border-radius: 16px;
+            border: 1px solid rgba(226, 232, 240, 0.9);
+            box-shadow: 0 18px 40px rgba(15, 23, 42, 0.08);
+            backdrop-filter: blur(4px);
+            margin-bottom: 1.5rem;
+            animation: floatUp 0.6s ease;
+        }
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 24px 45px rgba(15, 23, 42, 0.12);
+            transition: all 0.35s ease;
+        }
+
+        .section-title {
+            font-size: 1.05rem;
+            font-family: "SimSun", serif;
+            letter-spacing: 0.05rem;
+            margin-bottom: 0.35rem;
+        }
+        .section-subtitle {
+            font-size: 0.9rem;
+            color: #6b7280;
+            font-family: "KaiTi", "SimSun";
+            margin-bottom: 0.85rem;
+            letter-spacing: 0.05em;
+        }
+
+        .stButton > button {
+            border-radius: 10px;
+            border: 1px solid rgba(209, 213, 219, 0.8);
+            background: rgba(255, 255, 255, 0.8);
+            color: #0f172a;
+            padding: 0.5rem 0.8rem;
+            font-size: 0.95rem;
+            font-weight: 500;
+            letter-spacing: 0.04rem;
+            transition: all 0.2s ease-in-out;
+        }
+        .stButton > button:hover {
+            border-color: #0ea5e9;
+            background: rgba(14,165,233,0.08);
+            color: #0ea5e9;
+            transform: translateY(-1px);
+        }
+
+        .primary-button > button {
+            background: linear-gradient(120deg, #0ea5e9, #2563eb, #7c3aed);
+            color: white !important;
+            border: none;
+            box-shadow: 0 10px 28px rgba(80, 141, 255, 0.35);
+        }
+        .primary-button > button:hover {
+            transform: translateY(-1px) scale(1.01);
+            box-shadow: 0 12px 32px rgba(80, 141, 255, 0.45);
+        }
+
+        [data-testid="stSidebar"] {
+            background: linear-gradient(170deg, #0f172a 0%, #1e293b 60%, #312e81 100%);
+            color: #e5eaf5;
+            box-shadow: 8px 0 25px rgba(15, 23, 42, 0.35);
+        }
+        [data-testid="stSidebar"] h2,
+        [data-testid="stSidebar"] h3 {
+            color: #f8fafc;
+            font-family: "KaiTi", "SimSun";
+        }
+        [data-testid="stSidebar"] .stButton > button {
+            background: rgba(15, 23, 42, 0.7);
+            color: #e2e8f0;
+            border: 1px solid rgba(248, 250, 252, 0.15);
+        }
+        [data-testid="stSidebar"] .stButton > button:hover {
+            background: rgba(248, 250, 252, 0.15);
+            border: 1px solid rgba(248, 250, 252, 0.35);
+        }
+
+        .stDataFrame {
+            font-size: 0.92rem;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 6px 28px rgba(15, 23, 42, 0.08);
+        }
+
+        .stTabs [data-baseweb="tab-list"] {
+            gap: 0.8rem;
+        }
+        .stTabs [data-baseweb="tab"] {
+            font-family: "SimSun";
+            letter-spacing: 0.05em;
+            padding: 0.65rem 1.5rem;
+            border-radius: 999px;
+            background: rgba(255,255,255,0.8);
+            border: 1px solid rgba(15,23,42,0.12);
+        }
+        .stTabs [aria-selected="true"] {
+            background: linear-gradient(120deg, #2563eb, #7c3aed);
+            color: white !important;
+            border: none;
+        }
+
+        @keyframes fadeIn {
+            from {opacity: 0; transform: translateY(5px);}
+            to {opacity: 1; transform: translateY(0);}
+        }
+        @keyframes floatUp {
+            from {opacity: 0; transform: translateY(12px);}
+            to {opacity: 1; transform: translateY(0);}
+        }
+        @keyframes slideIn {
+            from {width: 0;}
+            to {width: 60%;}
+        }
+        </style>
+        """,
+        unsafe_allow_html=True,
+    )
+st.markdown(
+    '<p style="font-family:KaiTi; font-size:16px; letter-spacing:0.08em; color:#4b5563;">'
+    '—— 知识图谱标注 · 让规范更可读、更可用'
+    '</p>',
+    unsafe_allow_html=True
+)
+# ==================== Session State 初始化 ====================
+def init_session_state():
+    defaults = {
+        'projects': {},
+        'current_project': None,
+        'current_project_path': None,
+        'df': pd.DataFrame(columns=["规范", "条文", "条文内容", "实体标注", "关系标注", "规则标注"]),
+        'knowledge_graph': {'nodes': [], 'edges': []},
+        'current_view': 'main',
+        # 弹窗控制
+        'show_import_modal': False,
+        'show_new_project_modal': False,
+        'show_load_project_modal': False,
+        'show_ontology_modal': False,
+        # 导入相关
+        'import_preview_df': None,
+        'import_step': 1,
+    }
+    for key, value in defaults.items():
+        if key not in st.session_state:
+            st.session_state[key] = value
+
+# ==================== 项目管理函数 ====================
+def create_new_project(project_name: str) -> tuple:
+    if not project_name:
+        return False, "项目名称不能为空"
+    if project_name in st.session_state.projects:
+        return False, f"项目 '{project_name}' 已存在"
+    
+    project_data = {
+        'name': project_name,
+        'created_at': datetime.now().isoformat(),
+        'data': [],
+        'ontology': {'nodes': [], 'edges': []}
+    }
+    
+    st.session_state.projects[project_name] = project_data
+    st.session_state.current_project = project_name
+    st.session_state.df = pd.DataFrame(columns=["规范", "条文", "条文内容", "实体标注", "关系标注", "规则标注"])
+    st.session_state.knowledge_graph = {'nodes': [], 'edges': []}
+    
+    return True, f"项目 '{project_name}' 创建成功。"
+
+def load_project(project_name: str) -> bool:
+    if project_name not in st.session_state.projects:
+        return False
+    
+    project_data = st.session_state.projects[project_name]
+    st.session_state.current_project = project_name
+    
+    if project_data.get('data'):
+        st.session_state.df = pd.DataFrame(project_data['data'])
+    else:
+        st.session_state.df = pd.DataFrame(columns=["规范", "条文", "条文内容", "实体标注", "关系标注", "规则标注"])
+    
+    st.session_state.knowledge_graph = project_data.get('ontology', {'nodes': [], 'edges': []})
+    return True
+
+def save_current_project():
+    if st.session_state.current_project:
+        project_name = st.session_state.current_project
+        st.session_state.projects[project_name]['data'] = st.session_state.df.to_dict('records')
+        st.session_state.projects[project_name]['ontology'] = st.session_state.knowledge_graph
+
+def export_project():
+    if not st.session_state.current_project:
+        st.warning("请先选择一个项目")
+        return
+    
+    save_current_project()
+    project_name = st.session_state.current_project
+    project_data = st.session_state.projects[project_name]
+    
+    zip_buffer = BytesIO()
+    with zipfile.ZipFile(zip_buffer, 'w', zipfile.ZIP_DEFLATED) as zf:
+        zf.writestr('project.json', json.dumps(project_data, ensure_ascii=False, indent=2))
+        if not st.session_state.df.empty:
+            zf.writestr('data.csv', st.session_state.df.to_csv(index=False, encoding='utf-8-sig'))
+        zf.writestr('ontology.json', json.dumps(st.session_state.knowledge_graph, ensure_ascii=False, indent=2))
+    
+    zip_buffer.seek(0)
+    st.download_button(
+        label="点击下载项目包",
+        data=zip_buffer,
+        file_name=f"{project_name}_{datetime.now().strftime('%Y%m%d_%H%M%S')}.zip",
+        mime="application/zip",
+        type="primary"
+    )
+
+# ==================== 智能列识别和导入 ====================
+def guess_column_mapping(columns: list) -> dict:
+    mapping = {'规范': None, '条文': None, '条文内容': None}
+    rules = {
+        '规范': ['规范名称', '规范', '标准名称', '标准', 'standard', 'spec', '文件名'],
+        '条文': ['条文号', '条文编号', '章节号', '编号', '条款号', 'article', 'clause', 'section', '序号'],
+        '条文内容': ['条文内容', '内容', '正文', '条款内容', 'content', 'text', '描述', '说明']
+    }
+    columns_lower = [str(c).lower().strip() for c in columns]
+    for target, keywords in rules.items():
+        for keyword in keywords:
+            for i, col in enumerate(columns_lower):
+                if keyword.lower() in col and mapping[target] is None:
+                    mapping[target] = columns[i]
+                    break
+            if mapping[target]:
+                break
+    unmapped_cols = [c for c in columns if c not in mapping.values()]
+    unmapped_targets = [t for t, v in mapping.items() if v is None]
+    for i, target in enumerate(unmapped_targets):
+        if i < len(unmapped_cols):
+            mapping[target] = unmapped_cols[i]
+    return mapping
+
+def read_file_with_encoding(uploaded_file) -> pd.DataFrame:
+    content = uploaded_file.getvalue()
+    encodings = ['utf-8-sig', 'utf-8', 'gbk', 'gb2312', 'gb18030', 'latin1']
+    for encoding in encodings:
+        try:
+            if uploaded_file.name.endswith('.csv'):
+                df = pd.read_csv(BytesIO(content), encoding=encoding)
+            elif uploaded_file.name.endswith(('.xls', '.xlsx')):
+                df = pd.read_excel(BytesIO(content))
+            else:
+                df = pd.read_csv(BytesIO(content), encoding=encoding)
+            if len(df.columns) >= 1 and len(df) >= 1:
+                return df
+        except Exception:
+            continue
+    raise ValueError("无法识别文件编码，请检查文件格式")
+
+def apply_column_mapping(df: pd.DataFrame, mapping: dict) -> pd.DataFrame:
+    result_df = pd.DataFrame()
+    for target_col, source_col in mapping.items():
+        if source_col and source_col in df.columns:
+            result_df[target_col] = df[source_col].astype(str).fillna('')
+        else:
+            result_df[target_col] = ''
+    result_df['实体标注'] = False
+    result_df['关系标注'] = False
+    result_df['规则标注'] = False
+    return result_df
+
+def show_import_modal():
+    if not st.session_state.show_import_modal:
+        return
+    
+    with st.expander("智能导入数据", expanded=True):
+        st.markdown("### 上传文件")
+        st.info("支持任意列名的 CSV / Excel 文件，系统自动识别映射")
+        
+        uploaded_file = st.file_uploader(
+            "选择文件",
+            type=['csv', 'xlsx', 'xls'],
+            key="smart_uploader",
+            help="支持CSV、Excel格式，任意列名都可以"
+        )
+        
+        if uploaded_file:
+            try:
+                df = read_file_with_encoding(uploaded_file)
+                st.success(f"文件读取成功，共 {len(df)} 行, {len (df.columns)} 列")
+                
+                with st.expander("原始数据预览（前5行）", expanded=False):
+                    st.dataframe(df.head(), use_container_width=True)
+                
+                st.markdown("---")
+                st.markdown("### 列映射配置")
+                st.caption("系统自动识别，可手动调整")
+                
+                auto_mapping = guess_column_mapping(list(df.columns))
+                col1, col2, col3 = st.columns(3)
+                all_columns = ['(不选择)'] + list(df.columns)
+                
+                with col1:
+                    st.markdown("规范名称")
+                    default_idx_1 = all_columns.index(auto_mapping['规范']) if auto_mapping['规范'] in all_columns else 0
+                    col_spec = st.selectbox("选择对应列", all_columns, index=default_idx_1, key="map_spec", label_visibility="collapsed")
+                with col2:
+                    st.markdown("条文号")
+                    default_idx_2 = all_columns.index(auto_mapping['条文']) if auto_mapping['条文'] in all_columns else 0
+                    col_clause = st.selectbox("选择对应列", all_columns, index=default_idx_2, key="map_clause", label_visibility="collapsed")
+                with col3:
+                    st.markdown("条文内容")
+                    default_idx_3 = all_columns.index(auto_mapping['条文内容']) if auto_mapping['条文内容'] in all_columns else 0
+                    col_content = st.selectbox("选择对应列", all_columns, index=default_idx_3, key="map_content", label_visibility="collapsed")
+                
+                final_mapping = {
+                    '规范': col_spec if col_spec != '(不选择)' else None,
+                    '条文': col_clause if col_clause != '(不选择)' else None,
+                    '条文内容': col_content if col_content != '(不选择)' else None
+                }
+                
+                st.markdown("---")
+                st.markdown("### 转换预览")
+                preview_df = apply_column_mapping(df, final_mapping)
+                st.dataframe(preview_df.head(10)[['规范', '条文', '条文内容']], use_container_width=True, hide_index=True)
+                st.caption(f"预览前10行，共 {len(preview_df)} 条数据")
+                
+                st.markdown("---")
+                col_btn1, col_btn2 = st.columns(2)
+                with col_btn1:
+                    if st.button("确认导入", type="primary", use_container_width=True):
+                        if not any(final_mapping.values()):
+                            st.error("请至少选择一列")
+                        else:
+                            st.session_state.df = preview_df
+                            save_current_project()
+                            st.session_state.show_import_modal = False
+                            st.success(f"成功导入 {len(preview_df)} 条数据")
+                            st.rerun()
+                with col_btn2:
+                    if st.button("取消", use_container_width=True):
+                        st.session_state.show_import_modal = False
+                        st.rerun()
+                        
+            except Exception as e:
+                st.error(f"文件处理失败: {str(e)}")
+                st.info("请确保文件格式正确，或尝试其他编码保存文件")
+        else:
+            st.markdown("---")
+            st.markdown("### 支持的文件格式")
+            col1, col2 = st.columns(2)
+            with col1:
+                st.markdown("""
+                **CSV 文件**
+                - 任意列名
+                - 支持 UTF-8、GBK 等编码
+                - 建议用逗号分隔
+                """)
+            with col2:
+                st.markdown("""
+                **Excel 文件**
+                - 支持 .xlsx 和 .xls
+                - 自动读取第一个工作表
+                - 第一行作为列名
+                """)
+            st.markdown("---")
+            st.markdown("### 示例")
+            example_data = pd.DataFrame({
+                "标准名": ["GB50016-2014", "GB50016-2014"],
+                "章节": ["5.1.1", "5.1.2"],
+                "内容描述": ["建筑高度大于27m的住宅建筑...", "建筑高度大于100m的民用建筑..."]
+            })
+            st.dataframe(example_data, use_container_width=True, hide_index=True)
+            st.caption("系统将自动识别并映射为: 规范、条文、条文内容")
+            if st.button("关闭", key="close_import"):
+                st.session_state.show_import_modal = False
+                st.rerun()
+
+# ==================== 其他弹窗 ====================
+def show_new_project_modal():
+    if not st.session_state.show_new_project_modal:
+        return
+    
+    with st.expander("新建项目", expanded=True):
+        with st.form(key="new_project_form"):
+            project_name = st.text_input("项目名称", placeholder="请输入项目名称", key="new_project_name_input")
+            col1, col2 = st.columns(2)
+            with col1:
+                submitted = st.form_submit_button("创建项目", type="primary", use_container_width=True)
+            with col2:
+                cancelled = st.form_submit_button("取消", use_container_width=True)
+            
+            if submitted:
+                if project_name.strip():
+                    success, message = create_new_project(project_name.strip())
+                    if success:
+                        st.session_state.show_new_project_modal = False
+                        st.success(message)
+                        st.rerun()
+                    else:
+                        st.error(message)
+                else:
+                    st.error("项目名称不能为空")
+            if cancelled:
+                st.session_state.show_new_project_modal = False
+                st.rerun()
+
+def show_load_project_modal():
+    if not st.session_state.show_load_project_modal:
+        return
+    
+    with st.expander("打开项目", expanded=True):
+        projects = list(st.session_state.projects.keys())
+        if projects:
+            selected_project = st.selectbox("选择项目", projects, key="select_project")
+            if selected_project:
+                project_info = st.session_state.projects[selected_project]
+                st.caption(f"创建时间: {project_info.get('created_at', '未知')}")
+                st.caption(f"数据条数: {len(project_info.get('data', []))}")
+            col1, col2 = st.columns(2)
+            with col1:
+                if st.button("加载项目", type="primary", use_container_width=True):
+                    if load_project(selected_project):
+                        st.session_state.show_load_project_modal = False
+                        st.success(f"项目 '{selected_project}' 加载成功")
+                        st.rerun()
+            with col2:
+                if st.button("取消", use_container_width=True, key="cancel_load"):
+                    st.session_state.show_load_project_modal = False
+                    st.rerun()
+        else:
+            st.info("当前没有可用项目")
+            if st.button("创建新项目", type="primary", use_container_width=True):
+                st.session_state.show_new_project_modal = True
+                st.session_state.show_load_project_modal = False
+                st.rerun()
+            if st.button("关闭", key="close_load_empty"):
+                st.session_state.show_load_project_modal = False
+                st.rerun()
+
+def show_ontology_modal():
+    if not st.session_state.show_ontology_modal:
+        return
+    
+    with st.expander("本体操作", expanded=True):
+        tab1, tab2, tab3 = st.tabs(["载入本体", "本体概览", "编辑本体"])
+        
+        with tab1:
+            uploaded_onto = st.file_uploader("上传本体文件 (JSON)", type="json", key="upload_ontology")
+            if uploaded_onto:
+                try:
+                    onto_data = json.load(uploaded_onto)
+                    st.json(onto_data)
+                    if st.button("确认载入", type="primary"):
+                        st.session_state.knowledge_graph = onto_data
+                        save_current_project()
+                        st.success("本体载入成功")
+                        st.rerun()
+                except Exception as e:
+                    st.error(f"解析失败: {e}")
+        
+        with tab2:
+            kg = st.session_state.knowledge_graph
+            col1, col2 = st.columns(2)
+            with col1:
+                st.metric("节点数", len(kg.get('nodes', [])))
+            with col2:
+                st.metric("边数", len(kg.get('edges', [])))
+            if kg.get('nodes'):
+                st.markdown("节点列表（前10个）:")
+                for node in kg['nodes'][:10]:
+                    st.write(f"- {node.get('label', node.get('id', '未命名'))}")
+                if len(kg['nodes']) > 10:
+                    st.caption(f"... 还有 {len(kg['nodes']) - 10} 个节点")
+            else:
+                st.info("尚未载入本体数据")
+        
+        with tab3:
+            new_node = st.text_input("添加新节点", placeholder="输入节点名称")
+            if st.button("添加节点", type="primary") and new_node:
+                if 'nodes' not in st.session_state.knowledge_graph:
+                    st.session_state.knowledge_graph['nodes'] = []
+                st.session_state.knowledge_graph['nodes'].append({'id': new_node, 'label': new_node})
+                save_current_project()
+                st.success(f"添加节点: {new_node}")
+                st.rerun()
+        
+        st.markdown("---")
+        if st.button("关闭", key="close_ontology"):
+            st.session_state.show_ontology_modal = False
+            st.rerun()
+
+# ==================== 工具函数：搜索、筛选、批量操作 ====================
+def show_search_filter():
+    if st.session_state.df.empty:
+        return
+    
+    st.markdown('<div class="card">', unsafe_allow_html=True)
+    st.markdown('<div class="section-title">检索与筛选</div>', unsafe_allow_html=True)
+    st.markdown('<div class="section-subtitle">根据关键字与标注状态筛选规范条文</div>', unsafe_allow_html=True)
+    
+    col1, col2 = st.columns([2, 1])
+    with col1:
+        search_text = st.text_input("关键字搜索（条文内容 / 规范 / 条文编号）", value="", key="search_text")
+    with col2:
+        filter_option = st.selectbox(
+            "标注状态筛选",
+            ["全部", "已标注实体", "未标注实体", "已标注关系", "未标注关系", "已标注规则", "未标注规则"],
+            key="filter_select"
+        )
+    
+    filtered_df = st.session_state.df.copy()
+    if search_text:
+        mask = filtered_df['条文内容'].str.contains(search_text, case=False, na=False)
+        mask |= filtered_df['规范'].str.contains(search_text, case=False, na=False)
+        mask |= filtered_df['条文'].str.contains(search_text, case=False, na=False)
+        filtered_df = filtered_df[mask]
+    
+    if filter_option == "已标注实体":
+        filtered_df = filtered_df[filtered_df['实体标注'] == True]
+    elif filter_option == "未标注实体":
+        filtered_df = filtered_df[filtered_df['实体标注'] == False]
+    elif filter_option == "已标注关系":
+        filtered_df = filtered_df[filtered_df['关系标注'] == True]
+    elif filter_option == "未标注关系":
+        filtered_df = filtered_df[filtered_df['关系标注'] == False]
+    elif filter_option == "已标注规则":
+        filtered_df = filtered_df[filtered_df['规则标注'] == True]
+    elif filter_option == "未标注规则":
+        filtered_df = filtered_df[filtered_df['规则标注'] == False]
+    
+    if search_text or filter_option != "全部":
+        st.caption(f"找到 {len(filtered_df)} 条匹配记录")
+        if not filtered_df.empty:
+            st.dataframe(
+                filtered_df[['规范', '条文', '条文内容']],
+                use_container_width=True,
+                hide_index=True,
+                height=300
+            )
+    
+    st.markdown('</div>', unsafe_allow_html=True)
+
+def show_batch_operations():
+    if st.session_state.df.empty:
+        return
+    
+    with st.expander("批量操作", expanded=False):
+        col1, col2, col3 = st.columns(3)
+        with col1:
+            if st.button("全部标记实体", use_container_width=True):
+                st.session_state.df['实体标注'] = True
+                save_current_project()
+                st.success("已标记全部实体")
+                st.rerun()
+        with col2:
+            if st.button("全部标记关系", use_container_width=True):
+                st.session_state.df['关系标注'] = True
+                save_current_project()
+                st.success("已标记全部关系")
+                st.rerun()
+        with col3:
+            if st.button("全部标记规则", use_container_width=True):
+                st.session_state.df['规则标注'] = True
+                save_current_project()
+                st.success("已标记全部规则")
+                st.rerun()
+        
+        st.markdown("---")
+        col4, col5, col6 = st.columns(3)
+        with col4:
+            if st.button("清除实体标注", use_container_width=True):
+                st.session_state.df['实体标注'] = False
+                save_current_project()
+                st.success("已清除实体标注")
+                st.rerun()
+        with col5:
+            if st.button("清除关系标注", use_container_width=True):
+                st.session_state.df['关系标注'] = False
+                save_current_project()
+                st.success("已清除关系标注")
+                st.rerun()
+        with col6:
+            if st.button("清除规则标注", use_container_width=True):
+                st.session_state.df['规则标注'] = False
+                save_current_project()
+                st.success("已清除规则标注")
+                st.rerun()
+        
+        st.markdown("---")
+        st.markdown("数据导出")
+        col_exp1, col_exp2 = st.columns(2)
+        with col_exp1:
+            csv_data = st.session_state.df.to_csv(index=False, encoding='utf-8-sig')
+            st.download_button(
+                label="导出CSV",
+                data=csv_data,
+                file_name=f"规范数据_{datetime.now().strftime('%Y%m%d_%H%M%S')}.csv",
+                mime="text/csv",
+                use_container_width=True
+            )
+        with col_exp2:
+            json_data = st.session_state.df.to_json(orient='records', force_ascii=False, indent=2)
+            st.download_button(
+                label="导出JSON",
+                data=json_data,
+                file_name=f"规范数据_{datetime.now().strftime('%Y%m%d_%H%M%S')}.json",
+                mime="application/json",
+                use_container_width=True
+            )
+
+# ==================== 侧边栏 ====================
+def render_sidebar():
+    with st.sidebar:
+        st.header("项目管理")
+        col1, col2 = st.columns(2)
+        with col1:
+            if st.button("新建", use_container_width=True):
+                st.session_state.show_new_project_modal = True
+                st.rerun()
+        with col2:
+            if st.button("打开", use_container_width=True):
+                st.session_state.show_load_project_modal = True
+                st.rerun()
+        
+        if st.session_state.current_project:
+            st.success(f"当前项目：{st.session_state.current_project}")
+            if st.button("导出项目", use_container_width=True):
+                export_project()
+        else:
+            st.warning("未选择项目")
+        
+        st.markdown("---")
+        st.header("文件操作")
+        if st.button("导入规范", use_container_width=True):
+            st.session_state.show_import_modal = True
+            st.rerun()
+        if st.button("本体操作", use_container_width=True):
+            st.session_state.show_ontology_modal = True
+            st.rerun()
+        
+        st.markdown("---")
+        st.header("统计信息")
+        col1, col2 = st.columns(2)
+        with col1:
+            st.metric("条文数量", len(st.session_state.df))
+        with col2:
+            st.metric("项目数量", len(st.session_state.projects))
+        
+        if not st.session_state.df.empty:
+            total = len(st.session_state.df)
+            entity_done = st.session_state.df['实体标注'].sum() if '实体标注' in st.session_state.df.columns else 0
+            relation_done = st.session_state.df['关系标注'].sum() if '关系标注' in st.session_state.df.columns else 0
+            rule_done = st.session_state.df['规则标注'].sum() if '规则标注' in st.session_state.df.columns else 0
+            
+            st.markdown("---")
+            st.markdown("标注进度")
+            entity_pct = int(entity_done / total * 100) if total > 0 else 0
+            st.progress(entity_pct / 100, text=f"实体: {entity_pct}%")
+            relation_pct = int(relation_done / total * 100) if total > 0 else 0
+            st.progress(relation_pct / 100, text=f"关系: {relation_pct}%")
+            rule_pct = int(rule_done / total * 100) if total > 0 else 0
+            st.progress(rule_pct / 100, text=f"规则: {rule_pct}%")
+
+# ==================== 主页面 ====================
+def render_clause_toolbar():
+    st.markdown('<div class="card">', unsafe_allow_html=True)
+    st.markdown('<div class="section-title">条文操作</div>', unsafe_allow_html=True)
+    st.markdown('<div class="section-subtitle">对当前规范条文进行增删改、建模与标注</div>', unsafe_allow_html=True)
+
+    col1, col2, col3, col4 = st.columns(4)
+    with col1:
+        if st.button("删除条文", use_container_width=True):
+            st.toast("删除功能开发中")
+        if st.button("修改序号", use_container_width=True):
+            st.toast("修改序号功能开发中")
+    with col2:
+        if st.button("插入条文", use_container_width=True):
+            st.toast("插入功能开发中")
+        st.button("拆解条文", use_container_width=True, disabled=True)
+    with col3:
+        st.markdown('<div class="primary-button">', unsafe_allow_html=True)
+        go_model = st.button("图谱建模", use_container_width=True)
+        st.markdown('</div>', unsafe_allow_html=True)
+        if go_model:
+            st.session_state.current_view = "graph_modeling"
+            st.rerun()
+        st.button("重新建模", use_container_width=True, disabled=True)
+    with col4:
+        st.button("标注规则", use_container_width=True, disabled=True)
+        st.button("重写规则", use_container_width=True, disabled=True)
+
+    st.markdown('</div>', unsafe_allow_html=True)
+
+def show_main_page_enhanced():
+    st.markdown(
+    """
+    <div style="
+        width:100%;
+        height:95px;
+        border-radius: 18px;
+        padding: 1.1rem 1.35rem;
+        margin-bottom:1.2rem;
+        background: linear-gradient(120deg, rgba(14,165,233,0.12), rgba(124,58,237,0.14));
+        border: 1px solid rgba(14,165,233,0.2);
+        box-shadow: 0 12px 32px rgba(79,70,229,0.18);
+        font-family: 'KaiTi';
+        font-size: 1.05rem;
+        letter-spacing: 0.12em;
+        color: #1e293b;
+        animation: fadeIn 0.8s ease;
+    ">
+        今日提示：保持规范条文的精准、结构的清晰，是构建大规模图谱的第一步。
+    </div>
+    """,
+    unsafe_allow_html=True
+)
+    render_clause_toolbar()
+    show_search_filter()
+    show_batch_operations()
+    st.markdown("---")
+    
+    display_df = st.session_state.df
+    if display_df.empty:
+        st.info("暂无数据，请通过侧边栏“导入规范”添加数据")
+        st.markdown("### 快速开始")
+        st.markdown("""
+        1. 点击左侧“导入规范”按钮
+        2. 上传 CSV 或 Excel 文件（任意列名均可）
+        3. 系统自动识别列，确认映射后即可导入
+        """)
+        st.markdown("### 数据格式示例")
+        example_df = pd.DataFrame({
+            "规范": ["GB50016-2014", "GB50016-2014", "GB50016-2014"],
+            "条文": ["5.1.1", "5.1.2", "5.1.3"],
+            "条文内容": [
+                "建筑高度大于27m的住宅建筑应设置消防电梯...",
+                "建筑高度大于100m的民用建筑应设置避难层...",
+                "高层建筑的疏散楼梯应采用防烟楼梯间..."
+            ],
+            "实体标注": [False, False, False],
+            "关系标注": [False, False, False],
+            "规则标注": [False, False, False]
+        })
+        st.dataframe(example_df, use_container_width=True, hide_index=True)
+    else:
+        column_config = {
+            "规范": st.column_config.TextColumn("规范", width="medium"),
+            "条文": st.column_config.TextColumn("条文号", width="small"),
+            "条文内容": st.column_config.TextColumn("条文内容", width="large"),
+            "实体标注": st.column_config.CheckboxColumn("实体", width="small"),
+            "关系标注": st.column_config.CheckboxColumn("关系", width="small"),
+            "规则标注": st.column_config.CheckboxColumn("规则", width="small"),
+        }
+        edited_df = st.data_editor(
+            display_df,
+            column_config=column_config,
+            use_container_width=True,
+            hide_index=True,
+            height=500,
+            num_rows="dynamic",
+            key='main_data_editor'
+        )
+        if not edited_df.equals(st.session_state.df):
+            st.session_state.df = edited_df
+            save_current_project()
+    
+    st.markdown("---")
+    status_cols = st.columns([2, 1, 1, 1])
+    with status_cols[0]:
+        if st.session_state.current_project:
+            st.caption(f"当前项目：{st.session_state.current_project}")
+        else:
+            st.caption("未选择项目")
+    with status_cols[1]:
+        st.caption(f"数据量：{len(display_df)} 条")
+    with status_cols[2]:
+        if not display_df.empty:
+            done = display_df['实体标注'].sum() + display_df['关系标注'].sum() + display_df['规则标注'].sum()
+            total = len(display_df) * 3
+            pct = int(done / total * 100) if total > 0 else 0
+            st.caption(f"完成度：{pct}%")
+    with status_cols[3]:
+        st.caption("状态：就绪")
+
+# ==================== 图谱建模页 ====================
+def show_graph_modeling():
+    st.markdown("### 知识图谱建模")
+    if st.button("返回主页", type="secondary"):
+        st.session_state.current_view = 'main'
+        st.rerun()
+    
+    st.markdown("---")
+    col1, col2 = st.columns([1, 2])
+    
+    with col1:
+        st.markdown("#### 本体信息")
+        kg = st.session_state.knowledge_graph
+        st.metric("节点数", len(kg.get('nodes', [])))
+        st.metric("边数", len(kg.get('edges', [])))
+        st.markdown("#### 添加节点")
+        new_node = st.text_input("节点名称", key="graph_new_node")
+        if st.button("添加节点", type="primary") and new_node:
+            if 'nodes' not in st.session_state.knowledge_graph:
+                st.session_state.knowledge_graph['nodes'] = []
+            st.session_state.knowledge_graph['nodes'].append({'id': new_node, 'label': new_node})
+            save_current_project()
+            st.success(f"添加节点：{new_node}")
+            st.rerun()
+    
+    with col2:
+        st.markdown("#### 图谱可视化")
+        if kg.get('nodes'):
+            st.json(kg)
+        else:
+            st.info("尚无图谱数据")
+
+# ==================== 主程序入口 ====================
+def main():
+    init_session_state()
+    load_custom_css()
+    render_sidebar()
+    show_import_modal()
+    show_new_project_modal()
+    show_load_project_modal()
+    show_ontology_modal()
+    
+    st.title("建筑设计规范 - 知识图谱标注工具")
+    
+    if st.session_state.current_view == 'graph_modeling':
+        show_graph_modeling()
+    else:
+        show_main_page_enhanced()
+
+if __name__ == "__main__":
+    main()
