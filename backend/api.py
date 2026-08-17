@@ -1,4 +1,4 @@
-from flask import Blueprint, request, jsonify, send_from_directory
+from flask import Blueprint, request, jsonify, send_from_directory, current_app
 from models import db, Specification, Article, Entity, EntityAlias, Relation, Rule, Annotation, Project, ComplianceAssessment, AnnotationJob
 from datetime import datetime
 import os
@@ -8,6 +8,7 @@ import re
 import json
 from uuid import uuid4
 from pathlib import Path
+from sqlalchemy import text
 from llm_service import extract_clause, configured, LLMExtractionError
 from compliance_service import SCHEMA as COMPLIANCE_SCHEMA, run_checks
 from document_import_service import DocumentImportError, extract_document_text, ocr_available, split_into_articles
@@ -17,8 +18,21 @@ api = Blueprint('api', __name__)
 
 @api.route('/health', methods=['GET'])
 def health():
-    """Container readiness endpoint; avoids exposing operational details."""
-    return jsonify({'status': 'ok'}), 200
+    """Readiness endpoint that also verifies the configured database connection."""
+    try:
+        db.session.execute(text('SELECT 1'))
+    except Exception:
+        db.session.rollback()
+        return jsonify({'status': 'error', 'database': {'connected': False}}), 503
+    return jsonify({
+        'status': 'ok',
+        'database': {
+            'connected': True,
+            'backend': current_app.config.get('PERSISTENCE_BACKEND'),
+            'configured': current_app.config.get('PERSISTENCE_CONFIGURED', False),
+            'ephemeral': current_app.config.get('PERSISTENCE_EPHEMERAL', False),
+        },
+    }), 200
 
 
 @api.route('/compliance/schema', methods=['GET'])
