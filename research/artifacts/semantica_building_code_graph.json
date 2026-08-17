@@ -1,0 +1,1907 @@
+{
+  "artifact_type": "semantica_context_graph_practice",
+  "not_evaluation": true,
+  "gold_labels_used": false,
+  "performance_metrics": null,
+  "source_summary": [
+    {
+      "filename": "GB50011-2010 建筑抗震设计规范20220511（强条）.csv",
+      "code": "GB50011",
+      "encoding": "utf-8-sig",
+      "sha256": "d8504e2192f00f633d493e403046124e8a6306e4953b9b6bfae4e2df7808d54a",
+      "selected_records": 4
+    },
+    {
+      "filename": "GB50096-2011住宅设计规范20211220（强条）.csv",
+      "code": "GB50096",
+      "encoding": "utf-8-sig",
+      "sha256": "e1ca43dc86d9f61b70c6e1ad9247238833f2a6f5a94a0c9ee3418ae2a997082d",
+      "selected_records": 4
+    },
+    {
+      "filename": "GB 50016-2014(2018年版) 建筑设计防火规范.csv",
+      "code": "GB50016",
+      "encoding": "gb18030",
+      "sha256": "513de0daf777dbffcae2b3ede9d6c3ff0744b8505ab70e09fb6c5a08ce64876b",
+      "selected_records": 4
+    },
+    {
+      "filename": "GB 50368-2005 住宅建筑规范.csv",
+      "code": "GB50368",
+      "encoding": "utf-8-sig",
+      "sha256": "0e81e0d9d06e5f459296e1286d56a9b9caa245e04daefc78539e7e575ae88446",
+      "selected_records": 4
+    },
+    {
+      "filename": "建筑与市政工程无障碍通用规范GB55019-2021.csv",
+      "code": "GB55019",
+      "encoding": "utf-8-sig",
+      "sha256": "15e5e5494976d9102f00bec07d24ddf9deb839c5e4c60c226f517c5425dd8de3",
+      "selected_records": 4
+    }
+  ],
+  "selected_clause_count": 20,
+  "preferred_evidence_count": 3,
+  "decision_ids": {
+    "precheck": "8b0ac83d-8342-4ab6-a721-b6df4cc5a1a3",
+    "review": "6f101141-965f-4a7d-940b-e743a9f59fdf"
+  },
+  "decision_trace": [
+    {
+      "hops": [
+        {
+          "from": "8b0ac83d-8342-4ab6-a721-b6df4cc5a1a3",
+          "from_scenario": "用本地建筑规范条文构建可追溯的合规预检查上下文",
+          "to": "6f101141-965f-4a7d-940b-e743a9f59fdf",
+          "to_scenario": "对建筑规范预检查结果进行人工复核",
+          "type": "influences",
+          "edge_weight": 1.0
+        }
+      ],
+      "hop_count": 1,
+      "confidence_decay": 1.0,
+      "weakest_link": {
+        "from": "8b0ac83d-8342-4ab6-a721-b6df4cc5a1a3",
+        "from_scenario": "用本地建筑规范条文构建可追溯的合规预检查上下文",
+        "to": "6f101141-965f-4a7d-940b-e743a9f59fdf",
+        "to_scenario": "对建筑规范预检查结果进行人工复核",
+        "type": "influences",
+        "edge_weight": 1.0
+      },
+      "distance_band": "direct",
+      "interpretation": "Direct influence with confidence 1.00."
+    },
+    {
+      "hops": [
+        {
+          "from": "8b0ac83d-8342-4ab6-a721-b6df4cc5a1a3",
+          "from_scenario": "用本地建筑规范条文构建可追溯的合规预检查上下文",
+          "to": "6f101141-965f-4a7d-940b-e743a9f59fdf",
+          "to_scenario": "对建筑规范预检查结果进行人工复核",
+          "type": "influences",
+          "edge_weight": 1.0
+        }
+      ],
+      "hop_count": 1,
+      "confidence_decay": 1.0,
+      "weakest_link": {
+        "from": "8b0ac83d-8342-4ab6-a721-b6df4cc5a1a3",
+        "from_scenario": "用本地建筑规范条文构建可追溯的合规预检查上下文",
+        "to": "6f101141-965f-4a7d-940b-e743a9f59fdf",
+        "to_scenario": "对建筑规范预检查结果进行人工复核",
+        "type": "influences",
+        "edge_weight": 1.0
+      },
+      "distance_band": "direct",
+      "interpretation": "Direct influence with confidence 1.00."
+    },
+    {
+      "hops": [
+        {
+          "from": "8b0ac83d-8342-4ab6-a721-b6df4cc5a1a3",
+          "from_scenario": "用本地建筑规范条文构建可追溯的合规预检查上下文",
+          "to": "6f101141-965f-4a7d-940b-e743a9f59fdf",
+          "to_scenario": "对建筑规范预检查结果进行人工复核",
+          "type": "influences",
+          "edge_weight": 1.0
+        }
+      ],
+      "hop_count": 1,
+      "confidence_decay": 1.0,
+      "weakest_link": {
+        "from": "8b0ac83d-8342-4ab6-a721-b6df4cc5a1a3",
+        "from_scenario": "用本地建筑规范条文构建可追溯的合规预检查上下文",
+        "to": "6f101141-965f-4a7d-940b-e743a9f59fdf",
+        "to_scenario": "对建筑规范预检查结果进行人工复核",
+        "type": "influences",
+        "edge_weight": 1.0
+      },
+      "distance_band": "direct",
+      "interpretation": "Direct influence with confidence 1.00."
+    },
+    {
+      "hops": [
+        {
+          "from": "8b0ac83d-8342-4ab6-a721-b6df4cc5a1a3",
+          "from_scenario": "用本地建筑规范条文构建可追溯的合规预检查上下文",
+          "to": "6f101141-965f-4a7d-940b-e743a9f59fdf",
+          "to_scenario": "对建筑规范预检查结果进行人工复核",
+          "type": "influences",
+          "edge_weight": 1.0
+        }
+      ],
+      "hop_count": 1,
+      "confidence_decay": 1.0,
+      "weakest_link": {
+        "from": "8b0ac83d-8342-4ab6-a721-b6df4cc5a1a3",
+        "from_scenario": "用本地建筑规范条文构建可追溯的合规预检查上下文",
+        "to": "6f101141-965f-4a7d-940b-e743a9f59fdf",
+        "to_scenario": "对建筑规范预检查结果进行人工复核",
+        "type": "influences",
+        "edge_weight": 1.0
+      },
+      "distance_band": "direct",
+      "interpretation": "Direct influence with confidence 1.00."
+    },
+    {
+      "hops": [
+        {
+          "from": "8b0ac83d-8342-4ab6-a721-b6df4cc5a1a3",
+          "from_scenario": "用本地建筑规范条文构建可追溯的合规预检查上下文",
+          "to": "6f101141-965f-4a7d-940b-e743a9f59fdf",
+          "to_scenario": "对建筑规范预检查结果进行人工复核",
+          "type": "influences",
+          "edge_weight": 1.0
+        }
+      ],
+      "hop_count": 1,
+      "confidence_decay": 1.0,
+      "weakest_link": {
+        "from": "8b0ac83d-8342-4ab6-a721-b6df4cc5a1a3",
+        "from_scenario": "用本地建筑规范条文构建可追溯的合规预检查上下文",
+        "to": "6f101141-965f-4a7d-940b-e743a9f59fdf",
+        "to_scenario": "对建筑规范预检查结果进行人工复核",
+        "type": "influences",
+        "edge_weight": 1.0
+      },
+      "distance_band": "direct",
+      "interpretation": "Direct influence with confidence 1.00."
+    }
+  ],
+  "decision_impact": {
+    "decision_id": "8b0ac83d-8342-4ab6-a721-b6df4cc5a1a3",
+    "direct_influence": [
+      {
+        "decision_id": "6f101141-965f-4a7d-940b-e743a9f59fdf",
+        "scenario": "对建筑规范预检查结果进行人工复核",
+        "outcome": "pending_signoff",
+        "category": "building_code_review"
+      }
+    ],
+    "indirect_influence": [],
+    "influence_scores": [
+      {
+        "decision_id": "6f101141-965f-4a7d-940b-e743a9f59fdf",
+        "scenario": "对建筑规范预检查结果进行人工复核",
+        "outcome": "pending_signoff",
+        "category": "building_code_review",
+        "score": 0.6999999228395062,
+        "score_breakdown": {
+          "entity_overlap": 1.0,
+          "category_match": 0.0,
+          "temporal_proximity": 0.9999996141975309
+        },
+        "is_direct": true
+      }
+    ],
+    "total_influenced": 1,
+    "max_influence_score": 0.6999999228395062
+  },
+  "similar_decisions": [
+    {
+      "decision": {
+        "id": "8b0ac83d-8342-4ab6-a721-b6df4cc5a1a3",
+        "category": "building_code_precheck",
+        "scenario": "用本地建筑规范条文构建可追溯的合规预检查上下文",
+        "reasoning": "只把 CSV 条文作为证据节点，并保留规范文件、编码、行号和 SHA-256；本步骤不声称完成规范符合性判定。",
+        "outcome": "requires_human_review",
+        "confidence": 1.0,
+        "entities": [
+          "spec:GB50011",
+          "spec:GB50016",
+          "spec:GB50096",
+          "spec:GB50368",
+          "spec:GB55019"
+        ],
+        "decision_maker": "deterministic_practice",
+        "timestamp": 1.0,
+        "recorded_at": "2026-08-17T08:33:19.947818",
+        "valid_from": null,
+        "valid_until": null,
+        "metadata": {
+          "source_policy": "local deterministic practice; no LLM extraction",
+          "evidence_clause_ids": [
+            "clause:GB50096:5.1.2:de4f777202",
+            "clause:GB50096:5.2.1:4592b9523c",
+            "clause:GB50011:1.0.2:7638c6db08"
+          ],
+          "gold_labels_used": false,
+          "evaluation_metric": null
+        }
+      },
+      "similarity": 0.0,
+      "content_similarity": 0.0,
+      "structural_similarity": 0.0
+    },
+    {
+      "decision": {
+        "id": "6f101141-965f-4a7d-940b-e743a9f59fdf",
+        "category": "building_code_review",
+        "scenario": "对建筑规范预检查结果进行人工复核",
+        "reasoning": "研究规范要求将未标注条文与 gold evaluation 分开；因此实践输出保持待复核，不生成性能结论。",
+        "outcome": "pending_signoff",
+        "confidence": 1.0,
+        "entities": [
+          "spec:GB50011",
+          "spec:GB50016",
+          "spec:GB50096",
+          "spec:GB50368",
+          "spec:GB55019"
+        ],
+        "decision_maker": "human_reviewer",
+        "timestamp": 2.0,
+        "recorded_at": "2026-08-17T08:33:19.947818",
+        "valid_from": null,
+        "valid_until": null,
+        "metadata": {
+          "source_policy": "local deterministic practice; no LLM extraction",
+          "evidence_clause_ids": [
+            "clause:GB50096:5.1.2:de4f777202",
+            "clause:GB50096:5.2.1:4592b9523c",
+            "clause:GB50011:1.0.2:7638c6db08"
+          ],
+          "gold_labels_used": false,
+          "evaluation_metric": null,
+          "review_of": "8b0ac83d-8342-4ab6-a721-b6df4cc5a1a3"
+        }
+      },
+      "similarity": 0.0,
+      "content_similarity": 0.0,
+      "structural_similarity": 0.0
+    }
+  ],
+  "graph_summary": {
+    "nodes": 50,
+    "edges": 57,
+    "node_types": {
+      "Specification": 5,
+      "Clause": 20,
+      "Requirement": 19,
+      "decision": 2,
+      "category": 2,
+      "decision_maker": 2
+    },
+    "edge_types": {
+      "contains_clause": 20,
+      "states_requirement": 19,
+      "involves": 10,
+      "belongs_to": 2,
+      "made_by": 2,
+      "CAUSED": 1,
+      "supported_by": 3
+    }
+  },
+  "graph": {
+    "nodes": [
+      {
+        "id": "spec:GB50011",
+        "type": "Specification",
+        "content": "GB50011",
+        "properties": {
+          "source_file": "GB50011-2010 建筑抗震设计规范20220511（强条）.csv",
+          "source_encoding": "utf-8-sig",
+          "source_sha256": "d8504e2192f00f633d493e403046124e8a6306e4953b9b6bfae4e2df7808d54a"
+        },
+        "metadata": {
+          "source_file": "GB50011-2010 建筑抗震设计规范20220511（强条）.csv",
+          "source_encoding": "utf-8-sig",
+          "source_sha256": "d8504e2192f00f633d493e403046124e8a6306e4953b9b6bfae4e2df7808d54a"
+        }
+      },
+      {
+        "id": "clause:GB50011:1.0.2:7638c6db08",
+        "type": "Clause",
+        "content": "抗震设防烈度为6度及以上地区的建筑，必须进行抗震设计。",
+        "properties": {
+          "specification": "GB50011",
+          "clause_number": "1.0.2",
+          "source_file": "GB50011-2010 建筑抗震设计规范20220511（强条）.csv",
+          "source_row": "1",
+          "source_encoding": "utf-8-sig",
+          "source_sha256": "d8504e2192f00f633d493e403046124e8a6306e4953b9b6bfae4e2df7808d54a",
+          "evidence_uri": "csv://GB50011-2010 建筑抗震设计规范20220511（强条）.csv#row=1"
+        },
+        "metadata": {
+          "specification": "GB50011",
+          "clause_number": "1.0.2",
+          "source_file": "GB50011-2010 建筑抗震设计规范20220511（强条）.csv",
+          "source_row": "1",
+          "source_encoding": "utf-8-sig",
+          "source_sha256": "d8504e2192f00f633d493e403046124e8a6306e4953b9b6bfae4e2df7808d54a",
+          "evidence_uri": "csv://GB50011-2010 建筑抗震设计规范20220511（强条）.csv#row=1"
+        }
+      },
+      {
+        "id": "requirement:GB50011:1.0.2:7638c6db08",
+        "type": "Requirement",
+        "content": "抗震设防烈度为6度及以上地区的建筑，必须进行抗震设计。",
+        "properties": {
+          "specification": "GB50011",
+          "clause_number": "1.0.2",
+          "source_file": "GB50011-2010 建筑抗震设计规范20220511（强条）.csv",
+          "source_row": "1",
+          "source_sha256": "d8504e2192f00f633d493e403046124e8a6306e4953b9b6bfae4e2df7808d54a"
+        },
+        "metadata": {
+          "specification": "GB50011",
+          "clause_number": "1.0.2",
+          "source_file": "GB50011-2010 建筑抗震设计规范20220511（强条）.csv",
+          "source_row": "1",
+          "source_sha256": "d8504e2192f00f633d493e403046124e8a6306e4953b9b6bfae4e2df7808d54a"
+        }
+      },
+      {
+        "id": "clause:GB50011:1.0.4:4766e74e00",
+        "type": "Clause",
+        "content": "抗震设防烈度必须按国家规定的权限审批、颁发的文件（图件）确定。",
+        "properties": {
+          "specification": "GB50011",
+          "clause_number": "1.0.4",
+          "source_file": "GB50011-2010 建筑抗震设计规范20220511（强条）.csv",
+          "source_row": "2",
+          "source_encoding": "utf-8-sig",
+          "source_sha256": "d8504e2192f00f633d493e403046124e8a6306e4953b9b6bfae4e2df7808d54a",
+          "evidence_uri": "csv://GB50011-2010 建筑抗震设计规范20220511（强条）.csv#row=2"
+        },
+        "metadata": {
+          "specification": "GB50011",
+          "clause_number": "1.0.4",
+          "source_file": "GB50011-2010 建筑抗震设计规范20220511（强条）.csv",
+          "source_row": "2",
+          "source_encoding": "utf-8-sig",
+          "source_sha256": "d8504e2192f00f633d493e403046124e8a6306e4953b9b6bfae4e2df7808d54a",
+          "evidence_uri": "csv://GB50011-2010 建筑抗震设计规范20220511（强条）.csv#row=2"
+        }
+      },
+      {
+        "id": "requirement:GB50011:1.0.4:4766e74e00",
+        "type": "Requirement",
+        "content": "抗震设防烈度必须按国家规定的权限审批、颁发的文件（图件）确定。",
+        "properties": {
+          "specification": "GB50011",
+          "clause_number": "1.0.4",
+          "source_file": "GB50011-2010 建筑抗震设计规范20220511（强条）.csv",
+          "source_row": "2",
+          "source_sha256": "d8504e2192f00f633d493e403046124e8a6306e4953b9b6bfae4e2df7808d54a"
+        },
+        "metadata": {
+          "specification": "GB50011",
+          "clause_number": "1.0.4",
+          "source_file": "GB50011-2010 建筑抗震设计规范20220511（强条）.csv",
+          "source_row": "2",
+          "source_sha256": "d8504e2192f00f633d493e403046124e8a6306e4953b9b6bfae4e2df7808d54a"
+        }
+      },
+      {
+        "id": "clause:GB50011:3.1.1:6a0ed9c3cd",
+        "type": "Clause",
+        "content": "抗震设防的所有建筑应按现行国家标准《建筑工程抗震设防分类标准》GB 50223确定其抗震设防类别及其抗震设防标准。",
+        "properties": {
+          "specification": "GB50011",
+          "clause_number": "3.1.1",
+          "source_file": "GB50011-2010 建筑抗震设计规范20220511（强条）.csv",
+          "source_row": "3",
+          "source_encoding": "utf-8-sig",
+          "source_sha256": "d8504e2192f00f633d493e403046124e8a6306e4953b9b6bfae4e2df7808d54a",
+          "evidence_uri": "csv://GB50011-2010 建筑抗震设计规范20220511（强条）.csv#row=3"
+        },
+        "metadata": {
+          "specification": "GB50011",
+          "clause_number": "3.1.1",
+          "source_file": "GB50011-2010 建筑抗震设计规范20220511（强条）.csv",
+          "source_row": "3",
+          "source_encoding": "utf-8-sig",
+          "source_sha256": "d8504e2192f00f633d493e403046124e8a6306e4953b9b6bfae4e2df7808d54a",
+          "evidence_uri": "csv://GB50011-2010 建筑抗震设计规范20220511（强条）.csv#row=3"
+        }
+      },
+      {
+        "id": "requirement:GB50011:3.1.1:6a0ed9c3cd",
+        "type": "Requirement",
+        "content": "抗震设防的所有建筑应按现行国家标准《建筑工程抗震设防分类标准》GB 50223确定其抗震设防类别及其抗震设防标准。",
+        "properties": {
+          "specification": "GB50011",
+          "clause_number": "3.1.1",
+          "source_file": "GB50011-2010 建筑抗震设计规范20220511（强条）.csv",
+          "source_row": "3",
+          "source_sha256": "d8504e2192f00f633d493e403046124e8a6306e4953b9b6bfae4e2df7808d54a"
+        },
+        "metadata": {
+          "specification": "GB50011",
+          "clause_number": "3.1.1",
+          "source_file": "GB50011-2010 建筑抗震设计规范20220511（强条）.csv",
+          "source_row": "3",
+          "source_sha256": "d8504e2192f00f633d493e403046124e8a6306e4953b9b6bfae4e2df7808d54a"
+        }
+      },
+      {
+        "id": "clause:GB50011:3.3.1:ca5a300eb7",
+        "type": "Clause",
+        "content": "选择建筑场地时，应根据工程需要和地震活动情况、工程地质和地震地质的有关资料，对抗震有利、一般、不利和危险地段做出综合评价。对不利地段，应提出避开要求；当无法避开时应采取有效的措施。对危险地段，严禁建造甲、乙类的建筑，不应建造丙类的建筑。",
+        "properties": {
+          "specification": "GB50011",
+          "clause_number": "3.3.1",
+          "source_file": "GB50011-2010 建筑抗震设计规范20220511（强条）.csv",
+          "source_row": "4",
+          "source_encoding": "utf-8-sig",
+          "source_sha256": "d8504e2192f00f633d493e403046124e8a6306e4953b9b6bfae4e2df7808d54a",
+          "evidence_uri": "csv://GB50011-2010 建筑抗震设计规范20220511（强条）.csv#row=4"
+        },
+        "metadata": {
+          "specification": "GB50011",
+          "clause_number": "3.3.1",
+          "source_file": "GB50011-2010 建筑抗震设计规范20220511（强条）.csv",
+          "source_row": "4",
+          "source_encoding": "utf-8-sig",
+          "source_sha256": "d8504e2192f00f633d493e403046124e8a6306e4953b9b6bfae4e2df7808d54a",
+          "evidence_uri": "csv://GB50011-2010 建筑抗震设计规范20220511（强条）.csv#row=4"
+        }
+      },
+      {
+        "id": "requirement:GB50011:3.3.1:ca5a300eb7",
+        "type": "Requirement",
+        "content": "选择建筑场地时，应根据工程需要和地震活动情况、工程地质和地震地质的有关资料，对抗震有利、一般、不利和危险地段做出综合评价。对不利地段，应提出避开要求；当无法避开时应采取有效的措施。对危险地段，严禁建造甲、乙类的建筑，不应建造丙类的建筑。",
+        "properties": {
+          "specification": "GB50011",
+          "clause_number": "3.3.1",
+          "source_file": "GB50011-2010 建筑抗震设计规范20220511（强条）.csv",
+          "source_row": "4",
+          "source_sha256": "d8504e2192f00f633d493e403046124e8a6306e4953b9b6bfae4e2df7808d54a"
+        },
+        "metadata": {
+          "specification": "GB50011",
+          "clause_number": "3.3.1",
+          "source_file": "GB50011-2010 建筑抗震设计规范20220511（强条）.csv",
+          "source_row": "4",
+          "source_sha256": "d8504e2192f00f633d493e403046124e8a6306e4953b9b6bfae4e2df7808d54a"
+        }
+      },
+      {
+        "id": "spec:GB50096",
+        "type": "Specification",
+        "content": "GB50096",
+        "properties": {
+          "source_file": "GB50096-2011住宅设计规范20211220（强条）.csv",
+          "source_encoding": "utf-8-sig",
+          "source_sha256": "e1ca43dc86d9f61b70c6e1ad9247238833f2a6f5a94a0c9ee3418ae2a997082d"
+        },
+        "metadata": {
+          "source_file": "GB50096-2011住宅设计规范20211220（强条）.csv",
+          "source_encoding": "utf-8-sig",
+          "source_sha256": "e1ca43dc86d9f61b70c6e1ad9247238833f2a6f5a94a0c9ee3418ae2a997082d"
+        }
+      },
+      {
+        "id": "clause:GB50096:5.1.1:a610dadad2",
+        "type": "Clause",
+        "content": "住宅应按套型设计，每套住宅应设卧室、起居室（厅）、厨房和卫生间等基本功能空间。",
+        "properties": {
+          "specification": "GB50096",
+          "clause_number": "5.1.1",
+          "source_file": "GB50096-2011住宅设计规范20211220（强条）.csv",
+          "source_row": "1",
+          "source_encoding": "utf-8-sig",
+          "source_sha256": "e1ca43dc86d9f61b70c6e1ad9247238833f2a6f5a94a0c9ee3418ae2a997082d",
+          "evidence_uri": "csv://GB50096-2011住宅设计规范20211220（强条）.csv#row=1"
+        },
+        "metadata": {
+          "specification": "GB50096",
+          "clause_number": "5.1.1",
+          "source_file": "GB50096-2011住宅设计规范20211220（强条）.csv",
+          "source_row": "1",
+          "source_encoding": "utf-8-sig",
+          "source_sha256": "e1ca43dc86d9f61b70c6e1ad9247238833f2a6f5a94a0c9ee3418ae2a997082d",
+          "evidence_uri": "csv://GB50096-2011住宅设计规范20211220（强条）.csv#row=1"
+        }
+      },
+      {
+        "id": "requirement:GB50096:5.1.1:a610dadad2",
+        "type": "Requirement",
+        "content": "住宅应按套型设计，每套住宅应设卧室、起居室（厅）、厨房和卫生间等基本功能空间。",
+        "properties": {
+          "specification": "GB50096",
+          "clause_number": "5.1.1",
+          "source_file": "GB50096-2011住宅设计规范20211220（强条）.csv",
+          "source_row": "1",
+          "source_sha256": "e1ca43dc86d9f61b70c6e1ad9247238833f2a6f5a94a0c9ee3418ae2a997082d"
+        },
+        "metadata": {
+          "specification": "GB50096",
+          "clause_number": "5.1.1",
+          "source_file": "GB50096-2011住宅设计规范20211220（强条）.csv",
+          "source_row": "1",
+          "source_sha256": "e1ca43dc86d9f61b70c6e1ad9247238833f2a6f5a94a0c9ee3418ae2a997082d"
+        }
+      },
+      {
+        "id": "clause:GB50096:5.1.2:de4f777202",
+        "type": "Clause",
+        "content": "由卧室、起居室（厅）、厨房和卫生间等组成的套型，其使用面积不应小于30m2。",
+        "properties": {
+          "specification": "GB50096",
+          "clause_number": "5.1.2",
+          "source_file": "GB50096-2011住宅设计规范20211220（强条）.csv",
+          "source_row": "2",
+          "source_encoding": "utf-8-sig",
+          "source_sha256": "e1ca43dc86d9f61b70c6e1ad9247238833f2a6f5a94a0c9ee3418ae2a997082d",
+          "evidence_uri": "csv://GB50096-2011住宅设计规范20211220（强条）.csv#row=2"
+        },
+        "metadata": {
+          "specification": "GB50096",
+          "clause_number": "5.1.2",
+          "source_file": "GB50096-2011住宅设计规范20211220（强条）.csv",
+          "source_row": "2",
+          "source_encoding": "utf-8-sig",
+          "source_sha256": "e1ca43dc86d9f61b70c6e1ad9247238833f2a6f5a94a0c9ee3418ae2a997082d",
+          "evidence_uri": "csv://GB50096-2011住宅设计规范20211220（强条）.csv#row=2"
+        }
+      },
+      {
+        "id": "requirement:GB50096:5.1.2:de4f777202",
+        "type": "Requirement",
+        "content": "由卧室、起居室（厅）、厨房和卫生间等组成的套型，其使用面积不应小于30m2。",
+        "properties": {
+          "specification": "GB50096",
+          "clause_number": "5.1.2",
+          "source_file": "GB50096-2011住宅设计规范20211220（强条）.csv",
+          "source_row": "2",
+          "source_sha256": "e1ca43dc86d9f61b70c6e1ad9247238833f2a6f5a94a0c9ee3418ae2a997082d"
+        },
+        "metadata": {
+          "specification": "GB50096",
+          "clause_number": "5.1.2",
+          "source_file": "GB50096-2011住宅设计规范20211220（强条）.csv",
+          "source_row": "2",
+          "source_sha256": "e1ca43dc86d9f61b70c6e1ad9247238833f2a6f5a94a0c9ee3418ae2a997082d"
+        }
+      },
+      {
+        "id": "clause:GB50096:5.1.2:5106398f12",
+        "type": "Clause",
+        "content": "由兼起居的卧室、厨房和卫生间等组成的最小套型，其使用面积不应小于22m2。",
+        "properties": {
+          "specification": "GB50096",
+          "clause_number": "5.1.2",
+          "source_file": "GB50096-2011住宅设计规范20211220（强条）.csv",
+          "source_row": "3",
+          "source_encoding": "utf-8-sig",
+          "source_sha256": "e1ca43dc86d9f61b70c6e1ad9247238833f2a6f5a94a0c9ee3418ae2a997082d",
+          "evidence_uri": "csv://GB50096-2011住宅设计规范20211220（强条）.csv#row=3"
+        },
+        "metadata": {
+          "specification": "GB50096",
+          "clause_number": "5.1.2",
+          "source_file": "GB50096-2011住宅设计规范20211220（强条）.csv",
+          "source_row": "3",
+          "source_encoding": "utf-8-sig",
+          "source_sha256": "e1ca43dc86d9f61b70c6e1ad9247238833f2a6f5a94a0c9ee3418ae2a997082d",
+          "evidence_uri": "csv://GB50096-2011住宅设计规范20211220（强条）.csv#row=3"
+        }
+      },
+      {
+        "id": "requirement:GB50096:5.1.2:5106398f12",
+        "type": "Requirement",
+        "content": "由兼起居的卧室、厨房和卫生间等组成的最小套型，其使用面积不应小于22m2。",
+        "properties": {
+          "specification": "GB50096",
+          "clause_number": "5.1.2",
+          "source_file": "GB50096-2011住宅设计规范20211220（强条）.csv",
+          "source_row": "3",
+          "source_sha256": "e1ca43dc86d9f61b70c6e1ad9247238833f2a6f5a94a0c9ee3418ae2a997082d"
+        },
+        "metadata": {
+          "specification": "GB50096",
+          "clause_number": "5.1.2",
+          "source_file": "GB50096-2011住宅设计规范20211220（强条）.csv",
+          "source_row": "3",
+          "source_sha256": "e1ca43dc86d9f61b70c6e1ad9247238833f2a6f5a94a0c9ee3418ae2a997082d"
+        }
+      },
+      {
+        "id": "clause:GB50096:5.2.1:4592b9523c",
+        "type": "Clause",
+        "content": "双人卧室的使用面积不应小于9m2。",
+        "properties": {
+          "specification": "GB50096",
+          "clause_number": "5.2.1",
+          "source_file": "GB50096-2011住宅设计规范20211220（强条）.csv",
+          "source_row": "4",
+          "source_encoding": "utf-8-sig",
+          "source_sha256": "e1ca43dc86d9f61b70c6e1ad9247238833f2a6f5a94a0c9ee3418ae2a997082d",
+          "evidence_uri": "csv://GB50096-2011住宅设计规范20211220（强条）.csv#row=4"
+        },
+        "metadata": {
+          "specification": "GB50096",
+          "clause_number": "5.2.1",
+          "source_file": "GB50096-2011住宅设计规范20211220（强条）.csv",
+          "source_row": "4",
+          "source_encoding": "utf-8-sig",
+          "source_sha256": "e1ca43dc86d9f61b70c6e1ad9247238833f2a6f5a94a0c9ee3418ae2a997082d",
+          "evidence_uri": "csv://GB50096-2011住宅设计规范20211220（强条）.csv#row=4"
+        }
+      },
+      {
+        "id": "requirement:GB50096:5.2.1:4592b9523c",
+        "type": "Requirement",
+        "content": "双人卧室的使用面积不应小于9m2。",
+        "properties": {
+          "specification": "GB50096",
+          "clause_number": "5.2.1",
+          "source_file": "GB50096-2011住宅设计规范20211220（强条）.csv",
+          "source_row": "4",
+          "source_sha256": "e1ca43dc86d9f61b70c6e1ad9247238833f2a6f5a94a0c9ee3418ae2a997082d"
+        },
+        "metadata": {
+          "specification": "GB50096",
+          "clause_number": "5.2.1",
+          "source_file": "GB50096-2011住宅设计规范20211220（强条）.csv",
+          "source_row": "4",
+          "source_sha256": "e1ca43dc86d9f61b70c6e1ad9247238833f2a6f5a94a0c9ee3418ae2a997082d"
+        }
+      },
+      {
+        "id": "spec:GB50016",
+        "type": "Specification",
+        "content": "GB50016",
+        "properties": {
+          "source_file": "GB 50016-2014(2018年版) 建筑设计防火规范.csv",
+          "source_encoding": "gb18030",
+          "source_sha256": "513de0daf777dbffcae2b3ede9d6c3ff0744b8505ab70e09fb6c5a08ce64876b"
+        },
+        "metadata": {
+          "source_file": "GB 50016-2014(2018年版) 建筑设计防火规范.csv",
+          "source_encoding": "gb18030",
+          "source_sha256": "513de0daf777dbffcae2b3ede9d6c3ff0744b8505ab70e09fb6c5a08ce64876b"
+        }
+      },
+      {
+        "id": "clause:GB50016:3.1.1:9271cd257d",
+        "type": "Clause",
+        "content": "生产的火灾危险性应根据生产中使用或产生的物质性质及其数量等因素划分，可分为甲、乙、丙、丁、戊类，并应符合表3.1.1的规定。",
+        "properties": {
+          "specification": "GB50016",
+          "clause_number": "3.1.1",
+          "source_file": "GB 50016-2014(2018年版) 建筑设计防火规范.csv",
+          "source_row": "2",
+          "source_encoding": "gb18030",
+          "source_sha256": "513de0daf777dbffcae2b3ede9d6c3ff0744b8505ab70e09fb6c5a08ce64876b",
+          "evidence_uri": "csv://GB 50016-2014(2018年版) 建筑设计防火规范.csv#row=2"
+        },
+        "metadata": {
+          "specification": "GB50016",
+          "clause_number": "3.1.1",
+          "source_file": "GB 50016-2014(2018年版) 建筑设计防火规范.csv",
+          "source_row": "2",
+          "source_encoding": "gb18030",
+          "source_sha256": "513de0daf777dbffcae2b3ede9d6c3ff0744b8505ab70e09fb6c5a08ce64876b",
+          "evidence_uri": "csv://GB 50016-2014(2018年版) 建筑设计防火规范.csv#row=2"
+        }
+      },
+      {
+        "id": "requirement:GB50016:3.1.1:9271cd257d",
+        "type": "Requirement",
+        "content": "生产的火灾危险性应根据生产中使用或产生的物质性质及其数量等因素划分，可分为甲、乙、丙、丁、戊类，并应符合表3.1.1的规定。",
+        "properties": {
+          "specification": "GB50016",
+          "clause_number": "3.1.1",
+          "source_file": "GB 50016-2014(2018年版) 建筑设计防火规范.csv",
+          "source_row": "2",
+          "source_sha256": "513de0daf777dbffcae2b3ede9d6c3ff0744b8505ab70e09fb6c5a08ce64876b"
+        },
+        "metadata": {
+          "specification": "GB50016",
+          "clause_number": "3.1.1",
+          "source_file": "GB 50016-2014(2018年版) 建筑设计防火规范.csv",
+          "source_row": "2",
+          "source_sha256": "513de0daf777dbffcae2b3ede9d6c3ff0744b8505ab70e09fb6c5a08ce64876b"
+        }
+      },
+      {
+        "id": "clause:GB50016:3.1.2-1:f6408ea7f0",
+        "type": "Clause",
+        "content": "同一座厂房或厂房的任一防火分区内有不同火灾危险性生产时，厂房或防火分区内的生产火灾危险性类别应按火灾危险性较大的部分确定；当生产过程中使用或产生易燃、可燃物的量较少，不足以构成爆炸或火灾危险时，可按实际情况确定；当符合下述条件之一时，可按火灾危险性较小的部分确定：火灾危险性较大的生产部分占本层或本防火分区建筑面积的比例小于5％或丁、戊类厂房内的油漆工段小于10％，且发生火灾事故时不足以蔓延至其他部位或火灾危险性较大的生产部分采取了有效的防火措施；",
+        "properties": {
+          "specification": "GB50016",
+          "clause_number": "3.1.2-1",
+          "source_file": "GB 50016-2014(2018年版) 建筑设计防火规范.csv",
+          "source_row": "3",
+          "source_encoding": "gb18030",
+          "source_sha256": "513de0daf777dbffcae2b3ede9d6c3ff0744b8505ab70e09fb6c5a08ce64876b",
+          "evidence_uri": "csv://GB 50016-2014(2018年版) 建筑设计防火规范.csv#row=3"
+        },
+        "metadata": {
+          "specification": "GB50016",
+          "clause_number": "3.1.2-1",
+          "source_file": "GB 50016-2014(2018年版) 建筑设计防火规范.csv",
+          "source_row": "3",
+          "source_encoding": "gb18030",
+          "source_sha256": "513de0daf777dbffcae2b3ede9d6c3ff0744b8505ab70e09fb6c5a08ce64876b",
+          "evidence_uri": "csv://GB 50016-2014(2018年版) 建筑设计防火规范.csv#row=3"
+        }
+      },
+      {
+        "id": "requirement:GB50016:3.1.2-1:f6408ea7f0",
+        "type": "Requirement",
+        "content": "同一座厂房或厂房的任一防火分区内有不同火灾危险性生产时，厂房或防火分区内的生产火灾危险性类别应按火灾危险性较大的部分确定；当生产过程中使用或产生易燃、可燃物的量较少，不足以构成爆炸或火灾危险时，可按实际情况确定；当符合下述条件之一时，可按火灾危险性较小的部分确定：火灾危险性较大的生产部分占本层或本防火分区建筑面积的比例小于5％或丁、戊类厂房内的油漆工段小于10％，且发生火灾事故时不足以蔓延至其他部位或火灾危险性较大的生产部分采取了有效的防火措施；",
+        "properties": {
+          "specification": "GB50016",
+          "clause_number": "3.1.2-1",
+          "source_file": "GB 50016-2014(2018年版) 建筑设计防火规范.csv",
+          "source_row": "3",
+          "source_sha256": "513de0daf777dbffcae2b3ede9d6c3ff0744b8505ab70e09fb6c5a08ce64876b"
+        },
+        "metadata": {
+          "specification": "GB50016",
+          "clause_number": "3.1.2-1",
+          "source_file": "GB 50016-2014(2018年版) 建筑设计防火规范.csv",
+          "source_row": "3",
+          "source_sha256": "513de0daf777dbffcae2b3ede9d6c3ff0744b8505ab70e09fb6c5a08ce64876b"
+        }
+      },
+      {
+        "id": "clause:GB50016:3.1.2-2:f28666f79b",
+        "type": "Clause",
+        "content": "同一座厂房或厂房的任一防火分区内有不同火灾危险性生产时，厂房或防火分区内的生产火灾危险性类别应按火灾危险性较大的部分确定；当生产过程中使用或产生易燃、可燃物的量较少，不足以构成爆炸或火灾危险时，可按实际情况确定；当符合下述条件之一时，可按火灾危险性较小的部分确定：丁、戊类厂房内的油漆工段，当采用封闭喷漆工艺，封闭喷漆空间内保持负压、油漆工段设置可燃气体探测报警系统或自动抑爆系统，且油漆工段占所在防火分区建筑面积的比例不大于20％。",
+        "properties": {
+          "specification": "GB50016",
+          "clause_number": "3.1.2-2",
+          "source_file": "GB 50016-2014(2018年版) 建筑设计防火规范.csv",
+          "source_row": "4",
+          "source_encoding": "gb18030",
+          "source_sha256": "513de0daf777dbffcae2b3ede9d6c3ff0744b8505ab70e09fb6c5a08ce64876b",
+          "evidence_uri": "csv://GB 50016-2014(2018年版) 建筑设计防火规范.csv#row=4"
+        },
+        "metadata": {
+          "specification": "GB50016",
+          "clause_number": "3.1.2-2",
+          "source_file": "GB 50016-2014(2018年版) 建筑设计防火规范.csv",
+          "source_row": "4",
+          "source_encoding": "gb18030",
+          "source_sha256": "513de0daf777dbffcae2b3ede9d6c3ff0744b8505ab70e09fb6c5a08ce64876b",
+          "evidence_uri": "csv://GB 50016-2014(2018年版) 建筑设计防火规范.csv#row=4"
+        }
+      },
+      {
+        "id": "requirement:GB50016:3.1.2-2:f28666f79b",
+        "type": "Requirement",
+        "content": "同一座厂房或厂房的任一防火分区内有不同火灾危险性生产时，厂房或防火分区内的生产火灾危险性类别应按火灾危险性较大的部分确定；当生产过程中使用或产生易燃、可燃物的量较少，不足以构成爆炸或火灾危险时，可按实际情况确定；当符合下述条件之一时，可按火灾危险性较小的部分确定：丁、戊类厂房内的油漆工段，当采用封闭喷漆工艺，封闭喷漆空间内保持负压、油漆工段设置可燃气体探测报警系统或自动抑爆系统，且油漆工段占所在防火分区建筑面积的比例不大于20％。",
+        "properties": {
+          "specification": "GB50016",
+          "clause_number": "3.1.2-2",
+          "source_file": "GB 50016-2014(2018年版) 建筑设计防火规范.csv",
+          "source_row": "4",
+          "source_sha256": "513de0daf777dbffcae2b3ede9d6c3ff0744b8505ab70e09fb6c5a08ce64876b"
+        },
+        "metadata": {
+          "specification": "GB50016",
+          "clause_number": "3.1.2-2",
+          "source_file": "GB 50016-2014(2018年版) 建筑设计防火规范.csv",
+          "source_row": "4",
+          "source_sha256": "513de0daf777dbffcae2b3ede9d6c3ff0744b8505ab70e09fb6c5a08ce64876b"
+        }
+      },
+      {
+        "id": "clause:GB50016:3.1.3:0e9eb8bfb1",
+        "type": "Clause",
+        "content": "储存物品的火灾危险性应根据储存物品的性质和储存物品中的可燃物数量等因素划分，可分为甲，乙、丙、丁、戊类，并应符合表3.1.3的规定。",
+        "properties": {
+          "specification": "GB50016",
+          "clause_number": "3.1.3",
+          "source_file": "GB 50016-2014(2018年版) 建筑设计防火规范.csv",
+          "source_row": "5",
+          "source_encoding": "gb18030",
+          "source_sha256": "513de0daf777dbffcae2b3ede9d6c3ff0744b8505ab70e09fb6c5a08ce64876b",
+          "evidence_uri": "csv://GB 50016-2014(2018年版) 建筑设计防火规范.csv#row=5"
+        },
+        "metadata": {
+          "specification": "GB50016",
+          "clause_number": "3.1.3",
+          "source_file": "GB 50016-2014(2018年版) 建筑设计防火规范.csv",
+          "source_row": "5",
+          "source_encoding": "gb18030",
+          "source_sha256": "513de0daf777dbffcae2b3ede9d6c3ff0744b8505ab70e09fb6c5a08ce64876b",
+          "evidence_uri": "csv://GB 50016-2014(2018年版) 建筑设计防火规范.csv#row=5"
+        }
+      },
+      {
+        "id": "requirement:GB50016:3.1.3:0e9eb8bfb1",
+        "type": "Requirement",
+        "content": "储存物品的火灾危险性应根据储存物品的性质和储存物品中的可燃物数量等因素划分，可分为甲，乙、丙、丁、戊类，并应符合表3.1.3的规定。",
+        "properties": {
+          "specification": "GB50016",
+          "clause_number": "3.1.3",
+          "source_file": "GB 50016-2014(2018年版) 建筑设计防火规范.csv",
+          "source_row": "5",
+          "source_sha256": "513de0daf777dbffcae2b3ede9d6c3ff0744b8505ab70e09fb6c5a08ce64876b"
+        },
+        "metadata": {
+          "specification": "GB50016",
+          "clause_number": "3.1.3",
+          "source_file": "GB 50016-2014(2018年版) 建筑设计防火规范.csv",
+          "source_row": "5",
+          "source_sha256": "513de0daf777dbffcae2b3ede9d6c3ff0744b8505ab70e09fb6c5a08ce64876b"
+        }
+      },
+      {
+        "id": "spec:GB50368",
+        "type": "Specification",
+        "content": "GB50368",
+        "properties": {
+          "source_file": "GB 50368-2005 住宅建筑规范.csv",
+          "source_encoding": "utf-8-sig",
+          "source_sha256": "0e81e0d9d06e5f459296e1286d56a9b9caa245e04daefc78539e7e575ae88446"
+        },
+        "metadata": {
+          "source_file": "GB 50368-2005 住宅建筑规范.csv",
+          "source_encoding": "utf-8-sig",
+          "source_sha256": "0e81e0d9d06e5f459296e1286d56a9b9caa245e04daefc78539e7e575ae88446"
+        }
+      },
+      {
+        "id": "clause:GB50368:4.1.1-1:01efef0b73",
+        "type": "Clause",
+        "content": "老年人住宅不应低于冬至日日照2h的标准；",
+        "properties": {
+          "specification": "GB50368",
+          "clause_number": "4.1.1-1",
+          "source_file": "GB 50368-2005 住宅建筑规范.csv",
+          "source_row": "1",
+          "source_encoding": "utf-8-sig",
+          "source_sha256": "0e81e0d9d06e5f459296e1286d56a9b9caa245e04daefc78539e7e575ae88446",
+          "evidence_uri": "csv://GB 50368-2005 住宅建筑规范.csv#row=1"
+        },
+        "metadata": {
+          "specification": "GB50368",
+          "clause_number": "4.1.1-1",
+          "source_file": "GB 50368-2005 住宅建筑规范.csv",
+          "source_row": "1",
+          "source_encoding": "utf-8-sig",
+          "source_sha256": "0e81e0d9d06e5f459296e1286d56a9b9caa245e04daefc78539e7e575ae88446",
+          "evidence_uri": "csv://GB 50368-2005 住宅建筑规范.csv#row=1"
+        }
+      },
+      {
+        "id": "requirement:GB50368:4.1.1-1:01efef0b73",
+        "type": "Requirement",
+        "content": "老年人住宅不应低于冬至日日照2h的标准；",
+        "properties": {
+          "specification": "GB50368",
+          "clause_number": "4.1.1-1",
+          "source_file": "GB 50368-2005 住宅建筑规范.csv",
+          "source_row": "1",
+          "source_sha256": "0e81e0d9d06e5f459296e1286d56a9b9caa245e04daefc78539e7e575ae88446"
+        },
+        "metadata": {
+          "specification": "GB50368",
+          "clause_number": "4.1.1-1",
+          "source_file": "GB 50368-2005 住宅建筑规范.csv",
+          "source_row": "1",
+          "source_sha256": "0e81e0d9d06e5f459296e1286d56a9b9caa245e04daefc78539e7e575ae88446"
+        }
+      },
+      {
+        "id": "clause:GB50368:4.3.1:414ddd8981",
+        "type": "Clause",
+        "content": "每个住宅单元至少应有一个出入口可以通达机动车。",
+        "properties": {
+          "specification": "GB50368",
+          "clause_number": "4.3.1",
+          "source_file": "GB 50368-2005 住宅建筑规范.csv",
+          "source_row": "2",
+          "source_encoding": "utf-8-sig",
+          "source_sha256": "0e81e0d9d06e5f459296e1286d56a9b9caa245e04daefc78539e7e575ae88446",
+          "evidence_uri": "csv://GB 50368-2005 住宅建筑规范.csv#row=2"
+        },
+        "metadata": {
+          "specification": "GB50368",
+          "clause_number": "4.3.1",
+          "source_file": "GB 50368-2005 住宅建筑规范.csv",
+          "source_row": "2",
+          "source_encoding": "utf-8-sig",
+          "source_sha256": "0e81e0d9d06e5f459296e1286d56a9b9caa245e04daefc78539e7e575ae88446",
+          "evidence_uri": "csv://GB 50368-2005 住宅建筑规范.csv#row=2"
+        }
+      },
+      {
+        "id": "requirement:GB50368:4.3.1:414ddd8981",
+        "type": "Requirement",
+        "content": "每个住宅单元至少应有一个出入口可以通达机动车。",
+        "properties": {
+          "specification": "GB50368",
+          "clause_number": "4.3.1",
+          "source_file": "GB 50368-2005 住宅建筑规范.csv",
+          "source_row": "2",
+          "source_sha256": "0e81e0d9d06e5f459296e1286d56a9b9caa245e04daefc78539e7e575ae88446"
+        },
+        "metadata": {
+          "specification": "GB50368",
+          "clause_number": "4.3.1",
+          "source_file": "GB 50368-2005 住宅建筑规范.csv",
+          "source_row": "2",
+          "source_sha256": "0e81e0d9d06e5f459296e1286d56a9b9caa245e04daefc78539e7e575ae88446"
+        }
+      },
+      {
+        "id": "clause:GB50368:4.3.2-1:6584949dae",
+        "type": "Clause",
+        "content": "双车道道路的路面宽度不应小于6m；宅前路的路面宽度不应小于2.5m；",
+        "properties": {
+          "specification": "GB50368",
+          "clause_number": "4.3.2-1",
+          "source_file": "GB 50368-2005 住宅建筑规范.csv",
+          "source_row": "3",
+          "source_encoding": "utf-8-sig",
+          "source_sha256": "0e81e0d9d06e5f459296e1286d56a9b9caa245e04daefc78539e7e575ae88446",
+          "evidence_uri": "csv://GB 50368-2005 住宅建筑规范.csv#row=3"
+        },
+        "metadata": {
+          "specification": "GB50368",
+          "clause_number": "4.3.2-1",
+          "source_file": "GB 50368-2005 住宅建筑规范.csv",
+          "source_row": "3",
+          "source_encoding": "utf-8-sig",
+          "source_sha256": "0e81e0d9d06e5f459296e1286d56a9b9caa245e04daefc78539e7e575ae88446",
+          "evidence_uri": "csv://GB 50368-2005 住宅建筑规范.csv#row=3"
+        }
+      },
+      {
+        "id": "requirement:GB50368:4.3.2-1:6584949dae",
+        "type": "Requirement",
+        "content": "双车道道路的路面宽度不应小于6m；宅前路的路面宽度不应小于2.5m；",
+        "properties": {
+          "specification": "GB50368",
+          "clause_number": "4.3.2-1",
+          "source_file": "GB 50368-2005 住宅建筑规范.csv",
+          "source_row": "3",
+          "source_sha256": "0e81e0d9d06e5f459296e1286d56a9b9caa245e04daefc78539e7e575ae88446"
+        },
+        "metadata": {
+          "specification": "GB50368",
+          "clause_number": "4.3.2-1",
+          "source_file": "GB 50368-2005 住宅建筑规范.csv",
+          "source_row": "3",
+          "source_sha256": "0e81e0d9d06e5f459296e1286d56a9b9caa245e04daefc78539e7e575ae88446"
+        }
+      },
+      {
+        "id": "clause:GB50368:4.3.2-2:947701e582",
+        "type": "Clause",
+        "content": "当尽端式道路的长度大于120m时，应在尽端设置不小于12m×12m的回车场地；",
+        "properties": {
+          "specification": "GB50368",
+          "clause_number": "4.3.2-2",
+          "source_file": "GB 50368-2005 住宅建筑规范.csv",
+          "source_row": "4",
+          "source_encoding": "utf-8-sig",
+          "source_sha256": "0e81e0d9d06e5f459296e1286d56a9b9caa245e04daefc78539e7e575ae88446",
+          "evidence_uri": "csv://GB 50368-2005 住宅建筑规范.csv#row=4"
+        },
+        "metadata": {
+          "specification": "GB50368",
+          "clause_number": "4.3.2-2",
+          "source_file": "GB 50368-2005 住宅建筑规范.csv",
+          "source_row": "4",
+          "source_encoding": "utf-8-sig",
+          "source_sha256": "0e81e0d9d06e5f459296e1286d56a9b9caa245e04daefc78539e7e575ae88446",
+          "evidence_uri": "csv://GB 50368-2005 住宅建筑规范.csv#row=4"
+        }
+      },
+      {
+        "id": "requirement:GB50368:4.3.2-2:947701e582",
+        "type": "Requirement",
+        "content": "当尽端式道路的长度大于120m时，应在尽端设置不小于12m×12m的回车场地；",
+        "properties": {
+          "specification": "GB50368",
+          "clause_number": "4.3.2-2",
+          "source_file": "GB 50368-2005 住宅建筑规范.csv",
+          "source_row": "4",
+          "source_sha256": "0e81e0d9d06e5f459296e1286d56a9b9caa245e04daefc78539e7e575ae88446"
+        },
+        "metadata": {
+          "specification": "GB50368",
+          "clause_number": "4.3.2-2",
+          "source_file": "GB 50368-2005 住宅建筑规范.csv",
+          "source_row": "4",
+          "source_sha256": "0e81e0d9d06e5f459296e1286d56a9b9caa245e04daefc78539e7e575ae88446"
+        }
+      },
+      {
+        "id": "spec:GB55019",
+        "type": "Specification",
+        "content": "GB55019",
+        "properties": {
+          "source_file": "建筑与市政工程无障碍通用规范GB55019-2021.csv",
+          "source_encoding": "utf-8-sig",
+          "source_sha256": "15e5e5494976d9102f00bec07d24ddf9deb839c5e4c60c226f517c5425dd8de3"
+        },
+        "metadata": {
+          "source_file": "建筑与市政工程无障碍通用规范GB55019-2021.csv",
+          "source_encoding": "utf-8-sig",
+          "source_sha256": "15e5e5494976d9102f00bec07d24ddf9deb839c5e4c60c226f517c5425dd8de3"
+        }
+      },
+      {
+        "id": "clause:GB55019:1.0.1:475f4e5df3",
+        "type": "Clause",
+        "content": "为保障无障碍环境建设中无障碍设施的建设和运行维护，依据国家相关法律法规，制定本规范。",
+        "properties": {
+          "specification": "GB55019",
+          "clause_number": "1.0.1",
+          "source_file": "建筑与市政工程无障碍通用规范GB55019-2021.csv",
+          "source_row": "1",
+          "source_encoding": "utf-8-sig",
+          "source_sha256": "15e5e5494976d9102f00bec07d24ddf9deb839c5e4c60c226f517c5425dd8de3",
+          "evidence_uri": "csv://建筑与市政工程无障碍通用规范GB55019-2021.csv#row=1"
+        },
+        "metadata": {
+          "specification": "GB55019",
+          "clause_number": "1.0.1",
+          "source_file": "建筑与市政工程无障碍通用规范GB55019-2021.csv",
+          "source_row": "1",
+          "source_encoding": "utf-8-sig",
+          "source_sha256": "15e5e5494976d9102f00bec07d24ddf9deb839c5e4c60c226f517c5425dd8de3",
+          "evidence_uri": "csv://建筑与市政工程无障碍通用规范GB55019-2021.csv#row=1"
+        }
+      },
+      {
+        "id": "clause:GB55019:1.0.2:35acf3ed24",
+        "type": "Clause",
+        "content": "新建、改建和扩建的市政和建筑工程的无障碍设施的建设和运行维护必须执行本规范。",
+        "properties": {
+          "specification": "GB55019",
+          "clause_number": "1.0.2",
+          "source_file": "建筑与市政工程无障碍通用规范GB55019-2021.csv",
+          "source_row": "2",
+          "source_encoding": "utf-8-sig",
+          "source_sha256": "15e5e5494976d9102f00bec07d24ddf9deb839c5e4c60c226f517c5425dd8de3",
+          "evidence_uri": "csv://建筑与市政工程无障碍通用规范GB55019-2021.csv#row=2"
+        },
+        "metadata": {
+          "specification": "GB55019",
+          "clause_number": "1.0.2",
+          "source_file": "建筑与市政工程无障碍通用规范GB55019-2021.csv",
+          "source_row": "2",
+          "source_encoding": "utf-8-sig",
+          "source_sha256": "15e5e5494976d9102f00bec07d24ddf9deb839c5e4c60c226f517c5425dd8de3",
+          "evidence_uri": "csv://建筑与市政工程无障碍通用规范GB55019-2021.csv#row=2"
+        }
+      },
+      {
+        "id": "requirement:GB55019:1.0.2:35acf3ed24",
+        "type": "Requirement",
+        "content": "新建、改建和扩建的市政和建筑工程的无障碍设施的建设和运行维护必须执行本规范。",
+        "properties": {
+          "specification": "GB55019",
+          "clause_number": "1.0.2",
+          "source_file": "建筑与市政工程无障碍通用规范GB55019-2021.csv",
+          "source_row": "2",
+          "source_sha256": "15e5e5494976d9102f00bec07d24ddf9deb839c5e4c60c226f517c5425dd8de3"
+        },
+        "metadata": {
+          "specification": "GB55019",
+          "clause_number": "1.0.2",
+          "source_file": "建筑与市政工程无障碍通用规范GB55019-2021.csv",
+          "source_row": "2",
+          "source_sha256": "15e5e5494976d9102f00bec07d24ddf9deb839c5e4c60c226f517c5425dd8de3"
+        }
+      },
+      {
+        "id": "clause:GB55019:1.0.3_1:2f9e960ac8",
+        "type": "Clause",
+        "content": "无障碍设施的建设和运行维护应遵循下列基本原则：满足残疾人、老年人等有需求的人使用，消除他们在社会生活上的障碍；",
+        "properties": {
+          "specification": "GB55019",
+          "clause_number": "1.0.3 1",
+          "source_file": "建筑与市政工程无障碍通用规范GB55019-2021.csv",
+          "source_row": "3",
+          "source_encoding": "utf-8-sig",
+          "source_sha256": "15e5e5494976d9102f00bec07d24ddf9deb839c5e4c60c226f517c5425dd8de3",
+          "evidence_uri": "csv://建筑与市政工程无障碍通用规范GB55019-2021.csv#row=3"
+        },
+        "metadata": {
+          "specification": "GB55019",
+          "clause_number": "1.0.3 1",
+          "source_file": "建筑与市政工程无障碍通用规范GB55019-2021.csv",
+          "source_row": "3",
+          "source_encoding": "utf-8-sig",
+          "source_sha256": "15e5e5494976d9102f00bec07d24ddf9deb839c5e4c60c226f517c5425dd8de3",
+          "evidence_uri": "csv://建筑与市政工程无障碍通用规范GB55019-2021.csv#row=3"
+        }
+      },
+      {
+        "id": "requirement:GB55019:1.0.3_1:2f9e960ac8",
+        "type": "Requirement",
+        "content": "无障碍设施的建设和运行维护应遵循下列基本原则：满足残疾人、老年人等有需求的人使用，消除他们在社会生活上的障碍；",
+        "properties": {
+          "specification": "GB55019",
+          "clause_number": "1.0.3 1",
+          "source_file": "建筑与市政工程无障碍通用规范GB55019-2021.csv",
+          "source_row": "3",
+          "source_sha256": "15e5e5494976d9102f00bec07d24ddf9deb839c5e4c60c226f517c5425dd8de3"
+        },
+        "metadata": {
+          "specification": "GB55019",
+          "clause_number": "1.0.3 1",
+          "source_file": "建筑与市政工程无障碍通用规范GB55019-2021.csv",
+          "source_row": "3",
+          "source_sha256": "15e5e5494976d9102f00bec07d24ddf9deb839c5e4c60c226f517c5425dd8de3"
+        }
+      },
+      {
+        "id": "clause:GB55019:1.0.3_2:3820fa9667",
+        "type": "Clause",
+        "content": "无障碍设施的建设和运行维护应遵循下列基本原则：保证安全性和便利性，兼顾经济、绿色和美观；",
+        "properties": {
+          "specification": "GB55019",
+          "clause_number": "1.0.3 2",
+          "source_file": "建筑与市政工程无障碍通用规范GB55019-2021.csv",
+          "source_row": "4",
+          "source_encoding": "utf-8-sig",
+          "source_sha256": "15e5e5494976d9102f00bec07d24ddf9deb839c5e4c60c226f517c5425dd8de3",
+          "evidence_uri": "csv://建筑与市政工程无障碍通用规范GB55019-2021.csv#row=4"
+        },
+        "metadata": {
+          "specification": "GB55019",
+          "clause_number": "1.0.3 2",
+          "source_file": "建筑与市政工程无障碍通用规范GB55019-2021.csv",
+          "source_row": "4",
+          "source_encoding": "utf-8-sig",
+          "source_sha256": "15e5e5494976d9102f00bec07d24ddf9deb839c5e4c60c226f517c5425dd8de3",
+          "evidence_uri": "csv://建筑与市政工程无障碍通用规范GB55019-2021.csv#row=4"
+        }
+      },
+      {
+        "id": "requirement:GB55019:1.0.3_2:3820fa9667",
+        "type": "Requirement",
+        "content": "无障碍设施的建设和运行维护应遵循下列基本原则：保证安全性和便利性，兼顾经济、绿色和美观；",
+        "properties": {
+          "specification": "GB55019",
+          "clause_number": "1.0.3 2",
+          "source_file": "建筑与市政工程无障碍通用规范GB55019-2021.csv",
+          "source_row": "4",
+          "source_sha256": "15e5e5494976d9102f00bec07d24ddf9deb839c5e4c60c226f517c5425dd8de3"
+        },
+        "metadata": {
+          "specification": "GB55019",
+          "clause_number": "1.0.3 2",
+          "source_file": "建筑与市政工程无障碍通用规范GB55019-2021.csv",
+          "source_row": "4",
+          "source_sha256": "15e5e5494976d9102f00bec07d24ddf9deb839c5e4c60c226f517c5425dd8de3"
+        }
+      },
+      {
+        "id": "8b0ac83d-8342-4ab6-a721-b6df4cc5a1a3",
+        "type": "decision",
+        "content": "用本地建筑规范条文构建可追溯的合规预检查上下文",
+        "properties": {
+          "category": "building_code_precheck",
+          "outcome": "requires_human_review",
+          "confidence": 1.0,
+          "timestamp": 1.0,
+          "scenario": "用本地建筑规范条文构建可追溯的合规预检查上下文",
+          "decision_maker": "deterministic_practice",
+          "reasoning": "只把 CSV 条文作为证据节点，并保留规范文件、编码、行号和 SHA-256；本步骤不声称完成规范符合性判定。",
+          "source_policy": "local deterministic practice; no LLM extraction",
+          "evidence_clause_ids": [
+            "clause:GB50096:5.1.2:de4f777202",
+            "clause:GB50096:5.2.1:4592b9523c",
+            "clause:GB50011:1.0.2:7638c6db08"
+          ],
+          "gold_labels_used": false,
+          "evaluation_metric": null
+        },
+        "metadata": {
+          "category": "building_code_precheck",
+          "outcome": "requires_human_review",
+          "confidence": 1.0,
+          "timestamp": 1.0,
+          "scenario": "用本地建筑规范条文构建可追溯的合规预检查上下文",
+          "decision_maker": "deterministic_practice",
+          "reasoning": "只把 CSV 条文作为证据节点，并保留规范文件、编码、行号和 SHA-256；本步骤不声称完成规范符合性判定。",
+          "source_policy": "local deterministic practice; no LLM extraction",
+          "evidence_clause_ids": [
+            "clause:GB50096:5.1.2:de4f777202",
+            "clause:GB50096:5.2.1:4592b9523c",
+            "clause:GB50011:1.0.2:7638c6db08"
+          ],
+          "gold_labels_used": false,
+          "evaluation_metric": null
+        }
+      },
+      {
+        "id": "category_building_code_precheck",
+        "type": "category",
+        "content": "category_building_code_precheck",
+        "properties": {
+          "name": "building_code_precheck"
+        },
+        "metadata": {
+          "name": "building_code_precheck"
+        }
+      },
+      {
+        "id": "maker_deterministic_practice",
+        "type": "decision_maker",
+        "content": "maker_deterministic_practice",
+        "properties": {
+          "name": "deterministic_practice"
+        },
+        "metadata": {
+          "name": "deterministic_practice"
+        }
+      },
+      {
+        "id": "6f101141-965f-4a7d-940b-e743a9f59fdf",
+        "type": "decision",
+        "content": "对建筑规范预检查结果进行人工复核",
+        "properties": {
+          "category": "building_code_review",
+          "outcome": "pending_signoff",
+          "confidence": 1.0,
+          "timestamp": 2.0,
+          "scenario": "对建筑规范预检查结果进行人工复核",
+          "decision_maker": "human_reviewer",
+          "reasoning": "研究规范要求将未标注条文与 gold evaluation 分开；因此实践输出保持待复核，不生成性能结论。",
+          "source_policy": "local deterministic practice; no LLM extraction",
+          "evidence_clause_ids": [
+            "clause:GB50096:5.1.2:de4f777202",
+            "clause:GB50096:5.2.1:4592b9523c",
+            "clause:GB50011:1.0.2:7638c6db08"
+          ],
+          "gold_labels_used": false,
+          "evaluation_metric": null,
+          "review_of": "8b0ac83d-8342-4ab6-a721-b6df4cc5a1a3"
+        },
+        "metadata": {
+          "category": "building_code_review",
+          "outcome": "pending_signoff",
+          "confidence": 1.0,
+          "timestamp": 2.0,
+          "scenario": "对建筑规范预检查结果进行人工复核",
+          "decision_maker": "human_reviewer",
+          "reasoning": "研究规范要求将未标注条文与 gold evaluation 分开；因此实践输出保持待复核，不生成性能结论。",
+          "source_policy": "local deterministic practice; no LLM extraction",
+          "evidence_clause_ids": [
+            "clause:GB50096:5.1.2:de4f777202",
+            "clause:GB50096:5.2.1:4592b9523c",
+            "clause:GB50011:1.0.2:7638c6db08"
+          ],
+          "gold_labels_used": false,
+          "evaluation_metric": null,
+          "review_of": "8b0ac83d-8342-4ab6-a721-b6df4cc5a1a3"
+        }
+      },
+      {
+        "id": "category_building_code_review",
+        "type": "category",
+        "content": "category_building_code_review",
+        "properties": {
+          "name": "building_code_review"
+        },
+        "metadata": {
+          "name": "building_code_review"
+        }
+      },
+      {
+        "id": "maker_human_reviewer",
+        "type": "decision_maker",
+        "content": "maker_human_reviewer",
+        "properties": {
+          "name": "human_reviewer"
+        },
+        "metadata": {
+          "name": "human_reviewer"
+        }
+      }
+    ],
+    "edges": [
+      {
+        "id": "404be415-7365-55c6-abd0-fc36fc23ac03",
+        "familyId": "404be415-7365-55c6-abd0-fc36fc23ac03",
+        "source": "spec:GB50011",
+        "target": "clause:GB50011:1.0.2:7638c6db08",
+        "type": "contains_clause",
+        "weight": 1.0,
+        "metadata": {
+          "source_file": "GB50011-2010 建筑抗震设计规范20220511（强条）.csv",
+          "clause_number": "1.0.2"
+        }
+      },
+      {
+        "id": "ab70cf01-1296-5985-bd34-f763a870a5d1",
+        "familyId": "ab70cf01-1296-5985-bd34-f763a870a5d1",
+        "source": "clause:GB50011:1.0.2:7638c6db08",
+        "target": "requirement:GB50011:1.0.2:7638c6db08",
+        "type": "states_requirement",
+        "weight": 1.0
+      },
+      {
+        "id": "af82f99d-619d-52cd-8654-cf43ebb2bd6a",
+        "familyId": "af82f99d-619d-52cd-8654-cf43ebb2bd6a",
+        "source": "spec:GB50011",
+        "target": "clause:GB50011:1.0.4:4766e74e00",
+        "type": "contains_clause",
+        "weight": 1.0,
+        "metadata": {
+          "source_file": "GB50011-2010 建筑抗震设计规范20220511（强条）.csv",
+          "clause_number": "1.0.4"
+        }
+      },
+      {
+        "id": "549d38a2-b1e9-58dd-ace5-d3cd0158cca2",
+        "familyId": "549d38a2-b1e9-58dd-ace5-d3cd0158cca2",
+        "source": "clause:GB50011:1.0.4:4766e74e00",
+        "target": "requirement:GB50011:1.0.4:4766e74e00",
+        "type": "states_requirement",
+        "weight": 1.0
+      },
+      {
+        "id": "60cdb5c6-3b37-583e-b1ac-68236b558daf",
+        "familyId": "60cdb5c6-3b37-583e-b1ac-68236b558daf",
+        "source": "spec:GB50011",
+        "target": "clause:GB50011:3.1.1:6a0ed9c3cd",
+        "type": "contains_clause",
+        "weight": 1.0,
+        "metadata": {
+          "source_file": "GB50011-2010 建筑抗震设计规范20220511（强条）.csv",
+          "clause_number": "3.1.1"
+        }
+      },
+      {
+        "id": "4bdbba5b-a4f0-5e9e-a980-b953a2a3df6a",
+        "familyId": "4bdbba5b-a4f0-5e9e-a980-b953a2a3df6a",
+        "source": "clause:GB50011:3.1.1:6a0ed9c3cd",
+        "target": "requirement:GB50011:3.1.1:6a0ed9c3cd",
+        "type": "states_requirement",
+        "weight": 1.0
+      },
+      {
+        "id": "7c2e464f-c9ec-519c-9ea0-5ede4b71481f",
+        "familyId": "7c2e464f-c9ec-519c-9ea0-5ede4b71481f",
+        "source": "spec:GB50011",
+        "target": "clause:GB50011:3.3.1:ca5a300eb7",
+        "type": "contains_clause",
+        "weight": 1.0,
+        "metadata": {
+          "source_file": "GB50011-2010 建筑抗震设计规范20220511（强条）.csv",
+          "clause_number": "3.3.1"
+        }
+      },
+      {
+        "id": "f6822eab-bd0a-53a8-b67c-2685a572e304",
+        "familyId": "f6822eab-bd0a-53a8-b67c-2685a572e304",
+        "source": "clause:GB50011:3.3.1:ca5a300eb7",
+        "target": "requirement:GB50011:3.3.1:ca5a300eb7",
+        "type": "states_requirement",
+        "weight": 1.0
+      },
+      {
+        "id": "7657659d-c717-54a6-bca5-c582d8f42b61",
+        "familyId": "7657659d-c717-54a6-bca5-c582d8f42b61",
+        "source": "spec:GB50096",
+        "target": "clause:GB50096:5.1.1:a610dadad2",
+        "type": "contains_clause",
+        "weight": 1.0,
+        "metadata": {
+          "source_file": "GB50096-2011住宅设计规范20211220（强条）.csv",
+          "clause_number": "5.1.1"
+        }
+      },
+      {
+        "id": "d2eb1834-d5be-59f8-9f34-0340f34a89d9",
+        "familyId": "d2eb1834-d5be-59f8-9f34-0340f34a89d9",
+        "source": "clause:GB50096:5.1.1:a610dadad2",
+        "target": "requirement:GB50096:5.1.1:a610dadad2",
+        "type": "states_requirement",
+        "weight": 1.0
+      },
+      {
+        "id": "80d8ff94-e857-5296-abab-d9eac25326ae",
+        "familyId": "80d8ff94-e857-5296-abab-d9eac25326ae",
+        "source": "spec:GB50096",
+        "target": "clause:GB50096:5.1.2:de4f777202",
+        "type": "contains_clause",
+        "weight": 1.0,
+        "metadata": {
+          "source_file": "GB50096-2011住宅设计规范20211220（强条）.csv",
+          "clause_number": "5.1.2"
+        }
+      },
+      {
+        "id": "e028688b-6168-529c-adfc-53df4e7e9b39",
+        "familyId": "e028688b-6168-529c-adfc-53df4e7e9b39",
+        "source": "clause:GB50096:5.1.2:de4f777202",
+        "target": "requirement:GB50096:5.1.2:de4f777202",
+        "type": "states_requirement",
+        "weight": 1.0
+      },
+      {
+        "id": "d88552d8-84ab-53af-989c-9efee7b80bc2",
+        "familyId": "d88552d8-84ab-53af-989c-9efee7b80bc2",
+        "source": "spec:GB50096",
+        "target": "clause:GB50096:5.1.2:5106398f12",
+        "type": "contains_clause",
+        "weight": 1.0,
+        "metadata": {
+          "source_file": "GB50096-2011住宅设计规范20211220（强条）.csv",
+          "clause_number": "5.1.2"
+        }
+      },
+      {
+        "id": "709658f1-a920-598b-afad-7db9f0690ab2",
+        "familyId": "709658f1-a920-598b-afad-7db9f0690ab2",
+        "source": "clause:GB50096:5.1.2:5106398f12",
+        "target": "requirement:GB50096:5.1.2:5106398f12",
+        "type": "states_requirement",
+        "weight": 1.0
+      },
+      {
+        "id": "93aa42e9-3d27-53e6-9a9f-fc3ca9aa4315",
+        "familyId": "93aa42e9-3d27-53e6-9a9f-fc3ca9aa4315",
+        "source": "spec:GB50096",
+        "target": "clause:GB50096:5.2.1:4592b9523c",
+        "type": "contains_clause",
+        "weight": 1.0,
+        "metadata": {
+          "source_file": "GB50096-2011住宅设计规范20211220（强条）.csv",
+          "clause_number": "5.2.1"
+        }
+      },
+      {
+        "id": "3527d069-df14-5706-babe-d35c25a5ac84",
+        "familyId": "3527d069-df14-5706-babe-d35c25a5ac84",
+        "source": "clause:GB50096:5.2.1:4592b9523c",
+        "target": "requirement:GB50096:5.2.1:4592b9523c",
+        "type": "states_requirement",
+        "weight": 1.0
+      },
+      {
+        "id": "6d86b07a-5565-5898-adfb-459370ca0ce1",
+        "familyId": "6d86b07a-5565-5898-adfb-459370ca0ce1",
+        "source": "spec:GB50016",
+        "target": "clause:GB50016:3.1.1:9271cd257d",
+        "type": "contains_clause",
+        "weight": 1.0,
+        "metadata": {
+          "source_file": "GB 50016-2014(2018年版) 建筑设计防火规范.csv",
+          "clause_number": "3.1.1"
+        }
+      },
+      {
+        "id": "be594fc7-fd80-5b76-91dc-d9e79e769035",
+        "familyId": "be594fc7-fd80-5b76-91dc-d9e79e769035",
+        "source": "clause:GB50016:3.1.1:9271cd257d",
+        "target": "requirement:GB50016:3.1.1:9271cd257d",
+        "type": "states_requirement",
+        "weight": 1.0
+      },
+      {
+        "id": "3c308c12-362c-5d9e-acfb-06db7fefb540",
+        "familyId": "3c308c12-362c-5d9e-acfb-06db7fefb540",
+        "source": "spec:GB50016",
+        "target": "clause:GB50016:3.1.2-1:f6408ea7f0",
+        "type": "contains_clause",
+        "weight": 1.0,
+        "metadata": {
+          "source_file": "GB 50016-2014(2018年版) 建筑设计防火规范.csv",
+          "clause_number": "3.1.2-1"
+        }
+      },
+      {
+        "id": "2f96e893-a6fa-5734-b44b-6fe458a5267f",
+        "familyId": "2f96e893-a6fa-5734-b44b-6fe458a5267f",
+        "source": "clause:GB50016:3.1.2-1:f6408ea7f0",
+        "target": "requirement:GB50016:3.1.2-1:f6408ea7f0",
+        "type": "states_requirement",
+        "weight": 1.0
+      },
+      {
+        "id": "04ec92d2-3c78-5b4f-8ca7-fdf1465b80c8",
+        "familyId": "04ec92d2-3c78-5b4f-8ca7-fdf1465b80c8",
+        "source": "spec:GB50016",
+        "target": "clause:GB50016:3.1.2-2:f28666f79b",
+        "type": "contains_clause",
+        "weight": 1.0,
+        "metadata": {
+          "source_file": "GB 50016-2014(2018年版) 建筑设计防火规范.csv",
+          "clause_number": "3.1.2-2"
+        }
+      },
+      {
+        "id": "34b5934a-b150-55f8-a316-8d7f919eb5c2",
+        "familyId": "34b5934a-b150-55f8-a316-8d7f919eb5c2",
+        "source": "clause:GB50016:3.1.2-2:f28666f79b",
+        "target": "requirement:GB50016:3.1.2-2:f28666f79b",
+        "type": "states_requirement",
+        "weight": 1.0
+      },
+      {
+        "id": "5ff77933-69c9-5b44-92f0-e76975be53fe",
+        "familyId": "5ff77933-69c9-5b44-92f0-e76975be53fe",
+        "source": "spec:GB50016",
+        "target": "clause:GB50016:3.1.3:0e9eb8bfb1",
+        "type": "contains_clause",
+        "weight": 1.0,
+        "metadata": {
+          "source_file": "GB 50016-2014(2018年版) 建筑设计防火规范.csv",
+          "clause_number": "3.1.3"
+        }
+      },
+      {
+        "id": "1a3d42bf-39da-5218-beed-90f6c9e1ec9a",
+        "familyId": "1a3d42bf-39da-5218-beed-90f6c9e1ec9a",
+        "source": "clause:GB50016:3.1.3:0e9eb8bfb1",
+        "target": "requirement:GB50016:3.1.3:0e9eb8bfb1",
+        "type": "states_requirement",
+        "weight": 1.0
+      },
+      {
+        "id": "7c9eee0c-5de2-55b7-a1b5-40f953d77c67",
+        "familyId": "7c9eee0c-5de2-55b7-a1b5-40f953d77c67",
+        "source": "spec:GB50368",
+        "target": "clause:GB50368:4.1.1-1:01efef0b73",
+        "type": "contains_clause",
+        "weight": 1.0,
+        "metadata": {
+          "source_file": "GB 50368-2005 住宅建筑规范.csv",
+          "clause_number": "4.1.1-1"
+        }
+      },
+      {
+        "id": "27e832eb-b9b9-5344-9ac1-0ce7f7f5dcfd",
+        "familyId": "27e832eb-b9b9-5344-9ac1-0ce7f7f5dcfd",
+        "source": "clause:GB50368:4.1.1-1:01efef0b73",
+        "target": "requirement:GB50368:4.1.1-1:01efef0b73",
+        "type": "states_requirement",
+        "weight": 1.0
+      },
+      {
+        "id": "24732554-5c0f-589c-8199-15340dd119d4",
+        "familyId": "24732554-5c0f-589c-8199-15340dd119d4",
+        "source": "spec:GB50368",
+        "target": "clause:GB50368:4.3.1:414ddd8981",
+        "type": "contains_clause",
+        "weight": 1.0,
+        "metadata": {
+          "source_file": "GB 50368-2005 住宅建筑规范.csv",
+          "clause_number": "4.3.1"
+        }
+      },
+      {
+        "id": "2b7bd307-5b7b-5dd2-bed2-d28d599a7699",
+        "familyId": "2b7bd307-5b7b-5dd2-bed2-d28d599a7699",
+        "source": "clause:GB50368:4.3.1:414ddd8981",
+        "target": "requirement:GB50368:4.3.1:414ddd8981",
+        "type": "states_requirement",
+        "weight": 1.0
+      },
+      {
+        "id": "ea56668d-cefd-5672-a216-d7fd3fccd8b1",
+        "familyId": "ea56668d-cefd-5672-a216-d7fd3fccd8b1",
+        "source": "spec:GB50368",
+        "target": "clause:GB50368:4.3.2-1:6584949dae",
+        "type": "contains_clause",
+        "weight": 1.0,
+        "metadata": {
+          "source_file": "GB 50368-2005 住宅建筑规范.csv",
+          "clause_number": "4.3.2-1"
+        }
+      },
+      {
+        "id": "43ea6adc-b068-55fa-a9bd-49ebe77b68ec",
+        "familyId": "43ea6adc-b068-55fa-a9bd-49ebe77b68ec",
+        "source": "clause:GB50368:4.3.2-1:6584949dae",
+        "target": "requirement:GB50368:4.3.2-1:6584949dae",
+        "type": "states_requirement",
+        "weight": 1.0
+      },
+      {
+        "id": "80c2f6af-ed7c-52e6-be96-91a901900a33",
+        "familyId": "80c2f6af-ed7c-52e6-be96-91a901900a33",
+        "source": "spec:GB50368",
+        "target": "clause:GB50368:4.3.2-2:947701e582",
+        "type": "contains_clause",
+        "weight": 1.0,
+        "metadata": {
+          "source_file": "GB 50368-2005 住宅建筑规范.csv",
+          "clause_number": "4.3.2-2"
+        }
+      },
+      {
+        "id": "6db7d12e-4c09-52ab-a455-e00aee42d870",
+        "familyId": "6db7d12e-4c09-52ab-a455-e00aee42d870",
+        "source": "clause:GB50368:4.3.2-2:947701e582",
+        "target": "requirement:GB50368:4.3.2-2:947701e582",
+        "type": "states_requirement",
+        "weight": 1.0
+      },
+      {
+        "id": "32b26f08-d743-5806-b142-ccf58fd33ff4",
+        "familyId": "32b26f08-d743-5806-b142-ccf58fd33ff4",
+        "source": "spec:GB55019",
+        "target": "clause:GB55019:1.0.1:475f4e5df3",
+        "type": "contains_clause",
+        "weight": 1.0,
+        "metadata": {
+          "source_file": "建筑与市政工程无障碍通用规范GB55019-2021.csv",
+          "clause_number": "1.0.1"
+        }
+      },
+      {
+        "id": "85930d4a-8040-5cda-868b-4aa2685af650",
+        "familyId": "85930d4a-8040-5cda-868b-4aa2685af650",
+        "source": "spec:GB55019",
+        "target": "clause:GB55019:1.0.2:35acf3ed24",
+        "type": "contains_clause",
+        "weight": 1.0,
+        "metadata": {
+          "source_file": "建筑与市政工程无障碍通用规范GB55019-2021.csv",
+          "clause_number": "1.0.2"
+        }
+      },
+      {
+        "id": "39ff4184-a1d0-5d26-9e10-12635ab9859b",
+        "familyId": "39ff4184-a1d0-5d26-9e10-12635ab9859b",
+        "source": "clause:GB55019:1.0.2:35acf3ed24",
+        "target": "requirement:GB55019:1.0.2:35acf3ed24",
+        "type": "states_requirement",
+        "weight": 1.0
+      },
+      {
+        "id": "9d07ca08-2fc8-5f52-8c3e-c1d8653e9a75",
+        "familyId": "9d07ca08-2fc8-5f52-8c3e-c1d8653e9a75",
+        "source": "spec:GB55019",
+        "target": "clause:GB55019:1.0.3_1:2f9e960ac8",
+        "type": "contains_clause",
+        "weight": 1.0,
+        "metadata": {
+          "source_file": "建筑与市政工程无障碍通用规范GB55019-2021.csv",
+          "clause_number": "1.0.3 1"
+        }
+      },
+      {
+        "id": "004b4a42-62a0-5fab-a9b8-ac47e316402a",
+        "familyId": "004b4a42-62a0-5fab-a9b8-ac47e316402a",
+        "source": "clause:GB55019:1.0.3_1:2f9e960ac8",
+        "target": "requirement:GB55019:1.0.3_1:2f9e960ac8",
+        "type": "states_requirement",
+        "weight": 1.0
+      },
+      {
+        "id": "948c13ea-3fd3-53f8-a86a-843b8d9594a3",
+        "familyId": "948c13ea-3fd3-53f8-a86a-843b8d9594a3",
+        "source": "spec:GB55019",
+        "target": "clause:GB55019:1.0.3_2:3820fa9667",
+        "type": "contains_clause",
+        "weight": 1.0,
+        "metadata": {
+          "source_file": "建筑与市政工程无障碍通用规范GB55019-2021.csv",
+          "clause_number": "1.0.3 2"
+        }
+      },
+      {
+        "id": "619821f5-4f54-51c2-bca6-1f9df497cdd7",
+        "familyId": "619821f5-4f54-51c2-bca6-1f9df497cdd7",
+        "source": "clause:GB55019:1.0.3_2:3820fa9667",
+        "target": "requirement:GB55019:1.0.3_2:3820fa9667",
+        "type": "states_requirement",
+        "weight": 1.0
+      },
+      {
+        "id": "4ea263ed-dba6-5c52-ad47-b26a1b59d61d",
+        "familyId": "4ea263ed-dba6-5c52-ad47-b26a1b59d61d",
+        "source": "8b0ac83d-8342-4ab6-a721-b6df4cc5a1a3",
+        "target": "spec:GB50011",
+        "type": "involves",
+        "weight": 1.0,
+        "metadata": {
+          "confidence": 1.0
+        }
+      },
+      {
+        "id": "b96da7d2-b5a1-51db-9a54-7477007c5999",
+        "familyId": "b96da7d2-b5a1-51db-9a54-7477007c5999",
+        "source": "8b0ac83d-8342-4ab6-a721-b6df4cc5a1a3",
+        "target": "spec:GB50016",
+        "type": "involves",
+        "weight": 1.0,
+        "metadata": {
+          "confidence": 1.0
+        }
+      },
+      {
+        "id": "8b920d66-3802-594f-8323-44128767415c",
+        "familyId": "8b920d66-3802-594f-8323-44128767415c",
+        "source": "8b0ac83d-8342-4ab6-a721-b6df4cc5a1a3",
+        "target": "spec:GB50096",
+        "type": "involves",
+        "weight": 1.0,
+        "metadata": {
+          "confidence": 1.0
+        }
+      },
+      {
+        "id": "acb35f15-c070-5406-9faf-4bac213f61d7",
+        "familyId": "acb35f15-c070-5406-9faf-4bac213f61d7",
+        "source": "8b0ac83d-8342-4ab6-a721-b6df4cc5a1a3",
+        "target": "spec:GB50368",
+        "type": "involves",
+        "weight": 1.0,
+        "metadata": {
+          "confidence": 1.0
+        }
+      },
+      {
+        "id": "d2b6d9e2-d811-50c5-9137-1db4831e29a1",
+        "familyId": "d2b6d9e2-d811-50c5-9137-1db4831e29a1",
+        "source": "8b0ac83d-8342-4ab6-a721-b6df4cc5a1a3",
+        "target": "spec:GB55019",
+        "type": "involves",
+        "weight": 1.0,
+        "metadata": {
+          "confidence": 1.0
+        }
+      },
+      {
+        "id": "a2acdb15-70fa-5786-9923-90d1385c3857",
+        "familyId": "a2acdb15-70fa-5786-9923-90d1385c3857",
+        "source": "8b0ac83d-8342-4ab6-a721-b6df4cc5a1a3",
+        "target": "category_building_code_precheck",
+        "type": "belongs_to",
+        "weight": 1.0
+      },
+      {
+        "id": "34a473f8-28f8-5925-8d89-6919df01ed29",
+        "familyId": "34a473f8-28f8-5925-8d89-6919df01ed29",
+        "source": "8b0ac83d-8342-4ab6-a721-b6df4cc5a1a3",
+        "target": "maker_deterministic_practice",
+        "type": "made_by",
+        "weight": 1.0
+      },
+      {
+        "id": "2e53ca9d-3ec1-5821-887b-d88685c64342",
+        "familyId": "2e53ca9d-3ec1-5821-887b-d88685c64342",
+        "source": "6f101141-965f-4a7d-940b-e743a9f59fdf",
+        "target": "spec:GB50011",
+        "type": "involves",
+        "weight": 1.0,
+        "metadata": {
+          "confidence": 1.0
+        }
+      },
+      {
+        "id": "808a21a2-dfdd-596d-a6e5-8395f7070efb",
+        "familyId": "808a21a2-dfdd-596d-a6e5-8395f7070efb",
+        "source": "6f101141-965f-4a7d-940b-e743a9f59fdf",
+        "target": "spec:GB50016",
+        "type": "involves",
+        "weight": 1.0,
+        "metadata": {
+          "confidence": 1.0
+        }
+      },
+      {
+        "id": "97c2b8ff-ed39-55f5-80ed-dcf7be9788f3",
+        "familyId": "97c2b8ff-ed39-55f5-80ed-dcf7be9788f3",
+        "source": "6f101141-965f-4a7d-940b-e743a9f59fdf",
+        "target": "spec:GB50096",
+        "type": "involves",
+        "weight": 1.0,
+        "metadata": {
+          "confidence": 1.0
+        }
+      },
+      {
+        "id": "748b387b-d10e-5574-b1d9-f0657b8f33bc",
+        "familyId": "748b387b-d10e-5574-b1d9-f0657b8f33bc",
+        "source": "6f101141-965f-4a7d-940b-e743a9f59fdf",
+        "target": "spec:GB50368",
+        "type": "involves",
+        "weight": 1.0,
+        "metadata": {
+          "confidence": 1.0
+        }
+      },
+      {
+        "id": "9ecd3df6-bd4a-5fac-9639-c0d657647485",
+        "familyId": "9ecd3df6-bd4a-5fac-9639-c0d657647485",
+        "source": "6f101141-965f-4a7d-940b-e743a9f59fdf",
+        "target": "spec:GB55019",
+        "type": "involves",
+        "weight": 1.0,
+        "metadata": {
+          "confidence": 1.0
+        }
+      },
+      {
+        "id": "bbc8caf0-f939-5404-a6fc-66cc4f7f59d6",
+        "familyId": "bbc8caf0-f939-5404-a6fc-66cc4f7f59d6",
+        "source": "6f101141-965f-4a7d-940b-e743a9f59fdf",
+        "target": "category_building_code_review",
+        "type": "belongs_to",
+        "weight": 1.0
+      },
+      {
+        "id": "ab406371-9a87-52cf-9645-2dbcc93fcd96",
+        "familyId": "ab406371-9a87-52cf-9645-2dbcc93fcd96",
+        "source": "6f101141-965f-4a7d-940b-e743a9f59fdf",
+        "target": "maker_human_reviewer",
+        "type": "made_by",
+        "weight": 1.0
+      },
+      {
+        "id": "8f9888d1-6c9a-5dcc-a1d9-e9ab75dc818d",
+        "familyId": "8f9888d1-6c9a-5dcc-a1d9-e9ab75dc818d",
+        "source": "8b0ac83d-8342-4ab6-a721-b6df4cc5a1a3",
+        "target": "6f101141-965f-4a7d-940b-e743a9f59fdf",
+        "type": "CAUSED",
+        "weight": 1.0,
+        "metadata": {
+          "recorded_at": "2026-08-17T08:33:19.948822"
+        }
+      },
+      {
+        "id": "44a246a7-3f69-5a56-9dfd-adefa5398a1b",
+        "familyId": "44a246a7-3f69-5a56-9dfd-adefa5398a1b",
+        "source": "8b0ac83d-8342-4ab6-a721-b6df4cc5a1a3",
+        "target": "clause:GB50096:5.1.2:de4f777202",
+        "type": "supported_by",
+        "weight": 1.0,
+        "metadata": {
+          "evidence_role": "source_clause"
+        }
+      },
+      {
+        "id": "1e49439e-dd24-5621-b2bb-be2d03b06de7",
+        "familyId": "1e49439e-dd24-5621-b2bb-be2d03b06de7",
+        "source": "8b0ac83d-8342-4ab6-a721-b6df4cc5a1a3",
+        "target": "clause:GB50096:5.2.1:4592b9523c",
+        "type": "supported_by",
+        "weight": 1.0,
+        "metadata": {
+          "evidence_role": "source_clause"
+        }
+      },
+      {
+        "id": "c5575c61-ea97-532d-91c6-f7c2c6950539",
+        "familyId": "c5575c61-ea97-532d-91c6-f7c2c6950539",
+        "source": "8b0ac83d-8342-4ab6-a721-b6df4cc5a1a3",
+        "target": "clause:GB50011:1.0.2:7638c6db08",
+        "type": "supported_by",
+        "weight": 1.0,
+        "metadata": {
+          "evidence_role": "source_clause"
+        }
+      }
+    ],
+    "statistics": {
+      "node_count": 50,
+      "edge_count": 57
+    }
+  },
+  "semantica_version": "0.6.5",
+  "encoding_counts": {
+    "utf-8-sig": 4,
+    "gb18030": 1
+  }
+}
