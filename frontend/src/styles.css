@@ -26,11 +26,36 @@ body {
 }
 
 .app-shell {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
   min-height: 100vh;
   background: transparent;
 }
 
+.app-shell::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(135deg, rgba(13, 38, 36, .62), rgba(28, 62, 56, .38) 52%, rgba(13, 30, 29, .58));
+  pointer-events: none;
+}
+
+.app-background-video {
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: .78;
+  filter: saturate(.78) contrast(1.06);
+  pointer-events: none;
+}
+
 .app-header {
+  height: 76px;
   height: 76px;
   padding: 0 28px;
   background:
@@ -41,6 +66,7 @@ body {
   justify-content: space-between;
   box-shadow: 0 12px 35px rgba(24, 58, 55, .18);
   z-index: 2;
+  position: relative;
 }
 
 .brand-lockup {
@@ -115,13 +141,15 @@ body {
 }
 
 .app-content-wrap {
+  position: relative;
+  z-index: 1;
   padding: 24px;
-  background: transparent;
+  background: rgba(245, 241, 232, .26);
 }
 
 .page-surface {
   background:
-    linear-gradient(180deg, rgba(255,253,247,.92), rgba(255,253,247,.98)),
+    linear-gradient(180deg, rgba(255,253,247,.84), rgba(255,253,247,.92)),
     linear-gradient(135deg, rgba(215,181,109,.08), transparent 45%);
   border: 1px solid var(--line);
   border-radius: 22px;
@@ -160,8 +188,8 @@ body {
   margin-bottom: 18px;
   color: #fffaf0;
   background:
-    radial-gradient(circle at 82% 18%, rgba(215,181,109,.30), transparent 24%),
-    linear-gradient(135deg, #183a37 0%, #245c54 62%, #183a37 100%);
+    radial-gradient(circle at 82% 18%, rgba(215,181,109,.26), transparent 24%),
+    linear-gradient(135deg, rgba(24,58,55,.74) 0%, rgba(36,92,84,.56) 62%, rgba(24,58,55,.74) 100%);
   box-shadow: var(--shadow-soft);
 }
 
@@ -173,18 +201,6 @@ body {
   background:
     linear-gradient(90deg, rgba(10, 34, 32, .90) 0%, rgba(17, 54, 50, .68) 48%, rgba(14, 37, 35, .52) 100%),
     linear-gradient(180deg, rgba(8, 25, 24, .12), rgba(8, 25, 24, .45));
-  pointer-events: none;
-}
-
-.hero-video {
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  opacity: .72;
-  filter: saturate(.82) contrast(1.05);
   pointer-events: none;
 }
 

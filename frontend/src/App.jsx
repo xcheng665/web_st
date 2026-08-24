@@ -50,6 +50,9 @@ function Workspace() {
 
   return <ConfigProvider theme={{ token: { colorPrimary: '#183a37', borderRadius: 12, fontFamily: 'Microsoft YaHei, PingFang SC, sans-serif' }, components: { Card: { headerFontSize: 16 }, Menu: { darkItemSelectedBg: '#d7b56d', darkItemSelectedColor: '#183a37' } } }}>
   <Layout className="app-shell">
+    <video className="app-background-video" autoPlay muted loop playsInline preload="metadata" aria-hidden="true">
+      <source src="/hacker-apartment-rainy-evening.mp4" type="video/mp4" />
+    </video>
     <Header className="app-header">
       <div className="brand-lockup">
         <div className="brand-mark"><ReadOutlined style={{ fontSize: 24 }} /></div>
