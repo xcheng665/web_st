@@ -42,7 +42,10 @@ export default function Dashboard({ onUpload }) {
 
   return <div>
     <section className="hero-panel">
-      <div style={{ maxWidth: 760, position: 'relative', zIndex: 1 }}>
+      <video className="hero-video" autoPlay muted loop playsInline preload="metadata" aria-hidden="true">
+        <source src="/hacker-apartment-rainy-evening.mp4" type="video/mp4" />
+      </video>
+      <div style={{ maxWidth: 760, position: 'relative', zIndex: 2 }}>
         <div className="page-kicker" style={{ color: '#f1d08d' }}>KNOWLEDGE-DRIVEN DESIGN REVIEW</div>
         <Title level={1} style={{ margin: 0, fontFamily: 'STKaiti, KaiTi, serif' }}>让规范真正参与设计决策</Title>
         <Paragraph style={{ color: '#dbe7df', fontSize: 15, margin: '10px 0 18px' }}>
