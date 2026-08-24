@@ -60,3 +60,26 @@ DATABASE_URL=mysql+pymysql://building_code:<MYSQL_PASSWORD>@mysql:3306/building_
 ```
 
 The application selects MySQL automatically when `DATABASE_URL` is set. Configure your reverse proxy or cloud load balancer to terminate HTTPS before the container; do not expose the MySQL port publicly.
+
+## Persistent database on Vercel
+
+Vercel serverless functions do not provide durable local disk storage. For a deployment that must retain specifications, reviewed annotations, entities, relations and rules, provision a managed MySQL database and add these server-only environment variables to the Vercel project:
+
+```text
+DATABASE_URL=mysql+pymysql://<user>:<password>@<host>/<database>?charset=utf8mb4
+REQUIRE_PERSISTENT_DB=1
+DB_POOL_SIZE=2
+DB_MAX_OVERFLOW=1
+DB_POOL_RECYCLE=280
+```
+
+Set `DATABASE_URL` for Production and Preview separately when possible; never expose it as a browser variable or commit the real value. The `/api/health` response reports the selected backend and whether the deployment is using an ephemeral fallback.
+
+To move the current local SQLite data, including reviewed annotations, into the empty managed database, run once from the repository root:
+
+```powershell
+$env:DATABASE_URL = "mysql+pymysql://<user>:<password>@<host>/<database>?charset=utf8mb4"
+python backend/migrate_sqlite_to_database.py
+```
+
+The migration is append-safe only when the target is empty; it stops before writing if existing rows are detected. After setting the Vercel variables, redeploy and verify `/api/health` shows `database.configured: true` and `database.ephemeral: false`.

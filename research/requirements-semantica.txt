@@ -1,0 +1,3 @@
+# Keep this dependency separate from backend/requirements.txt: Semantica 0.6.5
+# requires NumPy >= 2, while the existing Flask demo pins NumPy 1.26.4.
+semantica==0.6.5
